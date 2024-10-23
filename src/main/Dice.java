@@ -1,4 +1,4 @@
-package dice_battle;
+package main;
 
 public class Dice {
 	int size = 6;

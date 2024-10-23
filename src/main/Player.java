@@ -1,4 +1,4 @@
-package dice_battle;
+package main;
 
 public class Player extends Character {
 	int sp;
@@ -20,22 +20,22 @@ public class Player extends Character {
 		sp--;
 		hitPer += 40;
 	}
-	
+
 	public void select() {
 		while (true) {
 			command = new java.util.Scanner(System.in).nextInt();
 			switch (command) {
 			case 1:
-				System.out.println(name+"の攻撃！");
+				System.out.println(name + "の攻撃！");
 				return;
 			case 2:
-				System.out.println(name+"の防御！");
+				System.out.println(name + "の防御！");
 				return;
 			case 3:
-				System.out.println(name+"の強打！");
+				System.out.println(name + "の強打！");
 				return;
 			case 4:
-				System.out.println(name+"の精密！");
+				System.out.println(name + "の精密！");
 				return;
 			default:
 				System.out.println("不正な入力！");

@@ -1,4 +1,4 @@
-package dice_battle;
+package main;
 
 public class Enemy extends Character{
 	int chargeCount = 0;
