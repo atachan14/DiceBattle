@@ -6,7 +6,7 @@ public class Player extends Character {
 
 	public Player() {
 		this.name = "player";
-		this.ap = 30;
+		this.ad = 30;
 		this.hitPer = 70;
 		this.avoidPer = 70;
 	}

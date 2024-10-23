@@ -23,7 +23,7 @@ public class Enemy extends Character{
 	public void select() {
 		if(chargeCount ==1) {
 			chargeCount--;
-			command=3;
+			command=31;
 			return;
 		}
 		
@@ -36,8 +36,11 @@ public class Enemy extends Character{
 			System.out.println(name+"の防御！");
 			return;
 		case 3:
-			System.out.println(name+"の溜め攻撃！");
+			System.out.println(name+"は力を溜めている！");
 			return;
+		case 31:
+			System.out.println(name+"の溜め攻撃！");
+		
 		case 4:
 			System.out.println(name+"の妨害！");
 			return;
