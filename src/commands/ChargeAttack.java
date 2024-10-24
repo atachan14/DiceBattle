@@ -1,4 +1,7 @@
-package main;
+package commands;
+
+import abnomals.ChargeForAttack;
+import main.Character;
 
 public class ChargeAttack extends Command{
 	int bonus = 25;
@@ -13,7 +16,7 @@ public class ChargeAttack extends Command{
 	}
 
 	public void exe() {
-		System.out.println(owner + "は力を溜めている！");
-		owner.hasAbnomal.add(new ChargeForAttack(owner, turn, bonus));
+		System.out.println(owner.getName() + "は力を溜めている！");
+		owner.addHasAbnomal(new ChargeForAttack(owner, turn, bonus));
 	}
 }

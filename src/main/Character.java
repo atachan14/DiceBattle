@@ -2,38 +2,81 @@ package main;
 
 import java.util.ArrayList;
 
+import abnomals.Abnomal;
+import commands.Attack;
+import commands.Command;
+import commands.Defense;
+
 public class Character {
 	String name;
-	int hp = 100;
-	int ad = 10;
-	int sp = 0;
-	int maxSp = 3;
-	int hitPer = 50;
-	int avoidPer = 50;
-	
-	Character target;
+	String camp;
+	public int hp = 100;
+	public int ad = 10;
+	public int sp = 0;
+	public int maxSp = 3;
+	public int hitPer = 50;
+	public int avoidPer = 50;
+
+	public Character target;
 	boolean survive = true;
-	int command = 0;
-	
+	int commandInput = 0;
+
 	Attack attack = new Attack(this);
 	Defense defense = new Defense(this);
 
-	ArrayList<Command> hasCommand = new ArrayList<Command>();
+	Command[] hasCommand = new Command[4];
 	ArrayList<Abnomal> hasAbnomal = new ArrayList<Abnomal>();
-	
+
 	public Character() {
 	}
-	
-	public void setTarget(Character target) {
-		this.target = target;
+
+	public Command getAttack() {
+		return hasCommand[0];
 	}
-	
+
+	public int getCommandInput() {
+		return commandInput;
+	}
+
+	public String getName() {
+		return name;
+	}
+
 	public void attackMesse(Command command) {
-		System.out.println(name + "の"+command.name+"！");
+		System.out.println(name + "の" + command.getName() + "！");
+	}
+
+	public void avoidMesse() {
+		System.out.println(name + "は回避した！");
 	}
 
 	public void bonusAttackMesse(Command command) {
-		System.out.println(name+"は"+target+"を"+command.name+"した！");
+		System.out.println(name + "は" + target + "を" + command.getName() + "した！");
 	}
-	
+
+	public void setTarget(Character target) {
+		this.target = target;
+	}
+
+	public void addHasAbnomal(Abnomal abnomal) {
+		hasAbnomal.add(abnomal);
+	}
+
+	public void removeHasAbnomal(Abnomal abnomal) {
+		hasAbnomal.remove(abnomal);
+	}
+
+	public void allAbnomalCountDown() {
+		for (Abnomal abnomals : hasAbnomal) {
+			abnomals.addTurn(-1);
+		}
+	}
+
+	public void displayComandSelect() {
+		System.out.println(name + "'s select");
+		for (int i = 0; i < hasCommand.length; i++) {
+			System.out.print((i + 1) + "." + hasCommand[i].getName() + " ");
+		}
+		System.out.print("　＞");
+	}
 }

@@ -60,6 +60,7 @@ public class Main {
 	public static void main(String[] args) {
 		System.out.print("DiceBattle ");
 		System.out.println("1.play 2.end　＞");
+		startDisplay();
 
 	}
 
@@ -67,7 +68,7 @@ public class Main {
 		int input = new java.util.Scanner(System.in).nextInt();
 		switch (input) {
 		case 1:
-			DiceBattleManager dbm = new DiceBattleManager();
+			DBM dbm = new DBM();
 			dbm.inPlay();
 			break;
 		case 2:

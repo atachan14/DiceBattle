@@ -1,4 +1,6 @@
-package main;
+package abnomals;
+
+import main.Character;
 
 public abstract class Abnomal {
 	String name;
@@ -13,7 +15,9 @@ public abstract class Abnomal {
 		this.num = num;
 	}
 
-	public abstract void cured();
+	public void cured(Abnomal abnomal) {
+		owner.removeHasAbnomal(abnomal);
+	}
 	
 	public void sickMesse() {
 		System.out.println(owner + "は" + name + "の" + typeName() + "を受けている！（残り" + turn + ")");
@@ -33,5 +37,9 @@ public abstract class Abnomal {
 		}else {
 			System.out.println(owner+"は"+name+"から回復した・・・");
 		}
+	}
+	
+	public void addTurn(int num) {
+		turn += num;
 	}
 }

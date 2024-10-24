@@ -1,18 +1,32 @@
 package main;
 
-public class Display extends DiceBattleManager {
+public class Display {
+	DBM dbm;
+	Player player;
+	Enemy enemy;
+	int turnCount;
+	
+	public Display(DBM dbm) {
+		this.dbm=dbm;	
+		this.player = dbm.player;
+		this.enemy = dbm.enemy;
+		
+		this.turnCount = dbm.turnCount;
+		
+		
+	}
 
 	public void opening() {
 		System.out.println("-----------------------");
-		System.out.println(player.name + "(HP." + player.hp + ",SP." + player.sp);
-		System.out.println(" 　vs");
-		System.out.println(enemy.name + "(HP." + enemy.hp);
-		System.out.println("-----------------------");
+		System.out.print("はじまるよ！");
+		System.out.println(" 	push enter ＞");
+		new java.util.Scanner(System.in).nextLine();
 	}
 
-	public void turnOfPlayer() {
-		System.out.println(turnCount + "ターン目");
+	public void startTurn() {
+
 		System.out.println("---------------");
+		System.out.println(dbm.turnCount + "ターン目");
 		System.out.println("【" + player.name + "】");
 		System.out.println("HP:" + player.hp);
 		System.out.print("SP:");
@@ -26,7 +40,6 @@ public class Display extends DiceBattleManager {
 		System.out.println("攻撃力:" + enemy.ad);
 		System.out.println("命中率:" + enemy.hitPer);
 		System.out.println("防御力:" + enemy.avoidPer);
-		System.out.println("1.攻撃 2.防御 3.強打 4.精密");
 
 	}
 
@@ -37,5 +50,18 @@ public class Display extends DiceBattleManager {
 		for (int i = 0; i < player.maxSp - player.sp; i++) {
 			System.out.print("〇");
 		}
+		System.out.println();
 	}
+	
+	public void endTurn() {
+		System.out.println("next turn ＞");
+		new java.util.Scanner(System.in).nextLine();
+	}
+	
+//	public void commandDisplay(Character character) {
+//		System.out.println(character.name+"'s turn");
+//		for(int i = 0;i<character.hasCommand.length;i++) {
+//			System.out.print((i+1)+"."+character.hasCommand[i].getName()+" ");
+//			}
+//	}
 }

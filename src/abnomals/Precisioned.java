@@ -1,4 +1,6 @@
-package main;
+package abnomals;
+
+import main.Character;
 
 public class Precisioned extends Abnomal {
 	String name = "精密";
@@ -11,5 +13,6 @@ public class Precisioned extends Abnomal {
 	
 	public void cured() {
 		owner.hitPer -= num;
+		super.cured(this);
 	}
 }

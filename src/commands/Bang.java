@@ -1,4 +1,6 @@
-package main;
+package commands;
+
+import main.Character;
 
 public class Bang extends Command {
 	int bonus = 25;
@@ -11,8 +13,8 @@ public class Bang extends Command {
 		bonus *= needSp;
 	}
 
-	public void exe(Character target) {
-		System.out.println(owner + "の" + name + "！");
-		owner.attack.exe(target,bonus);
+	public void exe() {
+		System.out.println(owner.getName() + "の" + name + "！");
+		owner.getAttack().exe(bonus);
 	}
 }

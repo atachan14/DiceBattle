@@ -1,4 +1,6 @@
-package main;
+package abnomals;
+
+import main.Character;
 
 public class Obstructioned extends Abnomal {
 	String name = "妨害";
@@ -11,5 +13,6 @@ public class Obstructioned extends Abnomal {
 	
 	public void cured() {
 		owner.avoidPer += num;
+		super.cured(this);
 	}
 }

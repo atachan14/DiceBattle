@@ -1,4 +1,6 @@
-package main;
+package abnomals;
+
+import main.Character;
 
 public class ChargeForAttack extends Abnomal{
 	
@@ -8,7 +10,8 @@ public class ChargeForAttack extends Abnomal{
 	}
 
 	public void cured() {
-		owner.attack.exe(num);
+		owner.getAttack().exe(num);
+		super.cured(this);
 	}
 	
 	

@@ -1,7 +1,8 @@
-package main;
+package abnomals;
+
+import main.Character;
 
 public class Defensed extends Abnomal {
-
 	public Defensed(Character owner, int turn, int num) {
 		super(owner, turn, num);
 
@@ -10,5 +11,6 @@ public class Defensed extends Abnomal {
 
 	public void cured() {
 		owner.avoidPer -= num;
+		super.cured(this);
 	}
 }
