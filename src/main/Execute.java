@@ -2,6 +2,8 @@ package main;
 
 import java.util.ArrayList;
 
+import commands.*;
+
 public class Execute {
 	DBM diceBattleManager;
 	ArrayList<Character> allPlayers;

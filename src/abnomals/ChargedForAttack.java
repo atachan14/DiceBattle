@@ -2,9 +2,9 @@ package abnomals;
 
 import main.Character;
 
-public class ChargeForAttack extends Abnomal{
+public class ChargedForAttack extends Abnomal{
 	
-	public ChargeForAttack(Character owner, int turn, int num) {
+	public ChargedForAttack(Character owner, int turn, int num) {
 		super(owner, turn, num);
 
 	}

@@ -41,4 +41,14 @@ public class Player extends Character {
 		}
 	}
 
+	public String getSpDisplay() {
+		String SpDisplay = "";
+		for (int i = 0; i < sp; i++) {
+			SpDisplay += "●";
+		}
+		for (int i = 0; i < maxSp - sp; i++) {
+			SpDisplay += "〇";
+		}
+		return SpDisplay;
+	}
 }

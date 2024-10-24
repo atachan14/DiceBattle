@@ -58,8 +58,7 @@ package main;
 public class Main {
 
 	public static void main(String[] args) {
-		System.out.print("DiceBattle ");
-		System.out.println("1.play 2.end　＞");
+		System.out.print("DiceBattle 	1.play 2.end　＞");
 		startDisplay();
 
 	}

@@ -6,15 +6,18 @@ import main.Character;
 public class Obstruction extends Command{
 	int avoidPerDebuff = 30;
 	int turn = 2;
-	int type = 2;
 
 	public Obstruction(Character owner) {
 		super(owner);
-		name = "妨害";
+		this.name = "妨害";
+		this.type = "debuff";
+		
+		needSp=1;
+		useSp=owner.sp;
+		turn *= useSp;
 	}
 	
-	public void exe() {
-		exeMesse();
+	public void exeEffect() {
 		owner.addHasAbnomal(new Obstructioned(owner, turn, avoidPerDebuff));
 	}
 }

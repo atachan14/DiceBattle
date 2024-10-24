@@ -9,8 +9,9 @@ public class Defense extends Command {
 
 	public Defense(Character owner) {
 		super(owner);
-
-		name = "防御";
+		this.name = "防御";
+		this.type = "buff";
+		
 		this.priority = 1;
 	}
 

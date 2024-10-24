@@ -1,10 +1,10 @@
 package main;
 
-import commands.ChargeAttack;
+import commands.ChargeForAttack;
 import commands.Obstruction;
 
 public class Enemy extends Character {
-	ChargeAttack chargeAttack = new ChargeAttack(this);
+	ChargeForAttack chargeAttack = new ChargeForAttack(this);
 	Obstruction obstruction = new Obstruction(this);
 
 	public Enemy() {

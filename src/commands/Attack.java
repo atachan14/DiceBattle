@@ -9,17 +9,9 @@ public class Attack extends Command {
 
 	public Attack(Character owner) {
 		super(owner);
-
 		name = "攻撃";
+		
 		dmg = owner.ad;
-	}
-
-	public void exe() {
-		exeMesse();	
-	}
-
-	public void exe(int bonus) {
-		exeMesse();
 	}
 	
 	public void exeEffect() {

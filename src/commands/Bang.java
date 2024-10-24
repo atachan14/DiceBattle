@@ -7,14 +7,16 @@ public class Bang extends Command {
 
 	public Bang(Character owner) {
 		super(owner);
-
 		name = "強打";
-		needSp = owner.sp;
-		bonus *= needSp;
+		type = "強化攻撃";
+
+		needSp = 1;
+		useSp = owner.sp;
+		bonus *= useSp;
+
 	}
 
-	public void exe() {
-		System.out.println(owner.getName() + "の" + name + "！");
+	public void exeEffect() {
 		owner.getAttack().exe(bonus);
 	}
 }
