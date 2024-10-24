@@ -1,53 +1,97 @@
 package main;
 
-import java.util.ArrayList;
-
-import commands.*;
 
 public class Execute {
-	DBM diceBattleManager;
-	ArrayList<Character> allPlayers;
-	ArrayList<Character> allEnemys;
-	ArrayList<Character> allCharacters;
+	DBM dbm;
 
 	public Execute(DBM dbm) {
-		this.diceBattleManager = dbm;
-		this.allPlayers = dbm.allPlayers;
-		this.allEnemys = dbm.allEnemys;
-		this.allCharacters = dbm.allCharacters;
+		this.dbm = dbm;
+	}
+
+	public void stanbyFase() {
+		allCharactersAbnomalCountDown();
+	}
+
+	public void selectFase() {
+		for (Character chara : dbm.allCharacters) {
+			if (chara.skipTurn > 0) {
+				chara.skipTurn--;
+				dbm.reserveCommands.add(chara.reserveCommand);
+				continue;
+			}
+			chara.selectCommand();
+			dbm.reserveCommands.add(chara.reserveCommand);
+		}
 	}
 
 	public void priority1Fase() {
-		for (Character chara : allCharacters) {
-			if (chara.hasCommand[chara.getCommandInput()].getPriority() == 1) {
-				chara.hasCommand[chara.getCommandInput()].exe();
+		for (int i = 0; i < dbm.reserveCommands.size(); i++) {
+			if (dbm.reserveCommands.get(i).getPriority() == 1) {
+				dbm.reserveCommands.get(i).exe();
+				dbm.reserveCommands.remove(i);
+				i--;
 			}
 		}
 	}
 
 	public void priority2Fase() {
-		for (Character chara : allCharacters) {
-			if (chara.hasCommand[chara.getCommandInput()].getPriority() == 2) {
-				chara.hasCommand[chara.getCommandInput()].exe();
+		for (int i = 0; i < dbm.reserveCommands.size(); i++) {
+			if (dbm.reserveCommands.get(i).getPriority() == 2) {
+				dbm.reserveCommands.get(i).exe();
+				dbm.reserveCommands.remove(i);
+				i--;
 			}
 		}
 	}
 
-	public void allPlayerAbnomalCountDown() {
-		for (Character chara : allCharacters) {
+	public void priority3Fase() {
+		for (int i = 0; i < dbm.reserveCommands.size(); i++) {
+			if (dbm.reserveCommands.get(i).getPriority() == 3) {
+				dbm.reserveCommands.get(i).exe();
+				dbm.reserveCommands.remove(i);
+				i--;
+			}
+		}
+	}
+	
+	public void endFase() {
+		allCharactersSuviveCheck();
+		allCharactersSpRecovery();
+	}
+
+	public void allCharactersSuviveCheck() {
+		for (int i = 0;i<dbm.allCharacters.size();i++) {
+			if (dbm.allCharacters.get(i).hp < 0) {
+				dbm.allCharacters.get(i).dyingMesse();
+				dbm.allCharacters.remove(i);
+				i--;
+			}
+		}
+	}
+
+	public void allCharactersAbnomalCountDown() {
+		for (Character chara : dbm.allCharacters) {
 			chara.allAbnomalCountDown();
 		}
 	}
 
-	public void autoTargetSet() {
-		if (allEnemys.size() == 1) {
-			for (Character player : allPlayers) {
-				player.setTarget(allEnemys.get(0));
+	public void allCharactersSpRecovery() {
+		for (Character chara : dbm.allCharacters) {
+			if (chara.sp < chara.maxSp) {
+				chara.addSp(1);
 			}
 		}
-		if (allPlayers.size() == 1) {
-			for (Character enemy : allEnemys) {
-				enemy.setTarget(allPlayers.get(0));
+	}
+
+	public void autoTargetSet() {
+		if (dbm.allEnemys.size() == 1) {
+			for (Character player : dbm.allPlayers) {
+				player.setTarget(dbm.allEnemys.get(0));
+			}
+		}
+		if (dbm.allPlayers.size() == 1) {
+			for (Character enemy : dbm.allEnemys) {
+				enemy.setTarget(dbm.allPlayers.get(0));
 			}
 		}
 	}

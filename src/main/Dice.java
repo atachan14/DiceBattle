@@ -11,7 +11,7 @@ public class Dice {
 		num1 = new java.util.Random().nextInt(size);
 		num2 = new java.util.Random().nextInt(size);
 		sumNum = num1 + num2;
-		System.out.println(chara.name + ":" + num1 + "+" + num2 + "=" + sumNum);
+		System.out.println("	"+chara.name + ":" + num1 + "+" + num2 + "=" + sumNum);
 		return sumNum;
 	}
 

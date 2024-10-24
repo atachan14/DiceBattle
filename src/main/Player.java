@@ -1,9 +1,10 @@
 package main;
 
-import commands.Bang;
-import commands.Precision;
+import commands.*;
 
 public class Player extends Character {
+	Attack attack = new Attack(this);
+	Defense defense = new Defense(this);
 	Bang bang = new Bang(this);
 	Precision precision = new Precision(this);
 
@@ -20,35 +21,19 @@ public class Player extends Character {
 
 	}
 
-	public void select() {
+	public void selectCommand() {
+		System.out.println(name + "'s select");
+		int input = 0;
 
 		while (true) {
-			super.displayComandSelect();
-			commandInput = new java.util.Scanner(System.in).nextInt() - 1;
-			switch (commandInput) {
-			case 0:
-				return;
-			case 1:
-				return;
-			case 2:
-				return;
-			case 3:
-				return;
-			default:
+			displayCommandSelect();
+			input = new java.util.Scanner(System.in).nextInt();
+			if (input < 1 || input > 4) {
 				System.out.println("不正な入力！");
+			} else {
 				break;
 			}
 		}
-	}
-
-	public String getSpDisplay() {
-		String SpDisplay = "";
-		for (int i = 0; i < sp; i++) {
-			SpDisplay += "●";
-		}
-		for (int i = 0; i < maxSp - sp; i++) {
-			SpDisplay += "〇";
-		}
-		return SpDisplay;
+		reserveCommand = hasCommand[input - 1];
 	}
 }

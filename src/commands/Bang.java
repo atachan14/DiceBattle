@@ -11,12 +11,12 @@ public class Bang extends Command {
 		type = "強化攻撃";
 
 		needSp = 1;
-		useSp = owner.sp;
-		bonus *= useSp;
 
 	}
 
 	public void exeEffect() {
+		useSp = owner.getSp();
+		bonus *= useSp;
 		owner.getAttack().exe(bonus);
 	}
 }

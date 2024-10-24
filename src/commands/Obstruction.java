@@ -3,7 +3,7 @@ package commands;
 import abnomals.Obstructioned;
 import main.Character;
 
-public class Obstruction extends Command{
+public class Obstruction extends Command {
 	int avoidPerDebuff = 30;
 	int turn = 2;
 
@@ -11,13 +11,13 @@ public class Obstruction extends Command{
 		super(owner);
 		this.name = "妨害";
 		this.type = "debuff";
-		
-		needSp=1;
-		useSp=owner.sp;
-		turn *= useSp;
+
+		needSp = 1;
 	}
-	
+
 	public void exeEffect() {
-		owner.addHasAbnomal(new Obstructioned(owner, turn, avoidPerDebuff));
+		useSp = owner.getSp();
+		turn *= useSp;
+		owner.addHasAbnomal(new Obstructioned(owner.target, owner, turn, avoidPerDebuff));
 	}
 }

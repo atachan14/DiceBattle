@@ -68,7 +68,7 @@ public class Main {
 		switch (input) {
 		case 1:
 			DBM dbm = new DBM();
-			dbm.inPlay();
+			dbm.runGame();
 			break;
 		case 2:
 			endDisplay();

@@ -13,15 +13,15 @@ public class Precision extends Command {
 		this.type = "debuff";
 
 		needSp = 1;
-		useSp = owner.sp;
-		turn *= useSp;
 	}
-
+	
 	public void exeMesse() {
 		System.out.println(owner.getName() + "は集中力を高めた！");
 	}
 
 	public void exeEffect() {
-		owner.addHasAbnomal(new Precisioned(owner, turn, hitPerBuff));
+		useSp = owner.getSp();
+		turn *= useSp;
+		owner.addHasAbnomal(new Precisioned(owner, owner, turn, hitPerBuff));
 	}
 }

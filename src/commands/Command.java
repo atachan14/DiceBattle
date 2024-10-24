@@ -17,14 +17,19 @@ public abstract class Command {
 	public void exe() {
 		exeMesse();
 		exeEffect();
+		owner.addSp(-useSp);
 	}
 
 	public void exe(int bonus) {
 		exeMesse();
-		exeEffect();
+		exeEffect(bonus);
 	}
 	
 	public void exeEffect() {
+		System.out.println("中身がない！");
+	}
+	
+	public void exeEffect(int bonus) {
 		System.out.println("中身がない！");
 	}
 

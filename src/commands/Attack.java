@@ -10,13 +10,12 @@ public class Attack extends Command {
 	public Attack(Character owner) {
 		super(owner);
 		name = "攻撃";
-		
-		dmg = owner.ad;
 	}
 	
 	public void exeEffect() {
+		dmg=owner.getAd();
 		if (dice.attackDice(owner, owner.target)) {
-			owner.target.hp -= dmg;
+			owner.target.addHp(-dmg);
 			System.out.println(owner.target.getName() + "に" + dmg + "のダメージ！");
 		} else {
 			owner.target.avoidMesse();
@@ -24,8 +23,9 @@ public class Attack extends Command {
 	}
 
 	public void exeEffect(int bonus) {
+		dmg=owner.getAd();
 		if (dice.attackDice(owner, owner.target)) {
-			owner.target.hp -= dmg + bonus;
+			owner.target.addHp(-(dmg+bonus));
 			System.out.println(owner.target.getName() + "に" + dmg + "のダメージと" + bonus + "の追加ダメージ！");
 		} else {
 			owner.target.avoidMesse();

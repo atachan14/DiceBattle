@@ -1,6 +1,7 @@
 package main;
 
 import java.util.ArrayList;
+import commands.*;
 
 public class DBM {
 	Player player;
@@ -8,6 +9,7 @@ public class DBM {
 	ArrayList<Character> allPlayers = new ArrayList<Character>();
 	ArrayList<Character> allEnemys = new ArrayList<Character>();
 	ArrayList<Character> allCharacters = new ArrayList<Character>();
+	ArrayList<Command> reserveCommands = new ArrayList<Command>();
 
 	Execute execute;
 	Display display;
@@ -28,22 +30,24 @@ public class DBM {
 		display = new Display(this);
 	}
 
-	public void inPlay() {
+	public void runGame() {
 
 		display.opening();
-		while (true) {
+		while (allPlayers.size() > 0 || allEnemys.size() > 0) {
 			turnCount++;
 			execute.autoTargetSet();
 			display.startTurn();
-			player.select();
-			enemy.select();
-			System.out.println("--------------------");
+			execute.stanbyFase();
+			execute.selectFase();
 
+			System.out.println("--------------------");
 			execute.priority1Fase();
 			execute.priority2Fase();
-			execute.allPlayerAbnomalCountDown();
+			execute.priority3Fase();
+			execute.endFase();
 			display.endTurn();
 		}
+		display.result();
 	}
 
 }

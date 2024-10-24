@@ -2,17 +2,9 @@ package main;
 
 public class Display {
 	DBM dbm;
-	Player player;
-	Enemy enemy;
-
-	int turnCount;
 
 	public Display(DBM dbm) {
 		this.dbm = dbm;
-		this.player = dbm.player;
-		this.enemy = dbm.enemy;
-
-		this.turnCount = dbm.turnCount;
 
 	}
 
@@ -54,10 +46,10 @@ public class Display {
 		}
 
 	public void spDisplay() {
-		for (int i = 0; i < player.sp; i++) {
+		for (int i = 0; i < dbm.player.sp; i++) {
 			System.out.print("●");
 		}
-		for (int i = 0; i < player.maxSp - player.sp; i++) {
+		for (int i = 0; i < dbm.player.maxSp - dbm.player.sp; i++) {
 			System.out.print("〇");
 		}
 		System.out.println();
@@ -67,11 +59,8 @@ public class Display {
 		System.out.println("next turn ＞");
 		new java.util.Scanner(System.in).nextLine();
 	}
-
-//	public void commandDisplay(Character character) {
-//		System.out.println(character.name+"'s turn");
-//		for(int i = 0;i<character.hasCommand.length;i++) {
-//			System.out.print((i+1)+"."+character.hasCommand[i].getName()+" ");
-//			}
-//	}
+	
+	public void result() {
+		System.out.println(dbm.allCharacters.get(0).camp+"の勝利！");
+	}
 }

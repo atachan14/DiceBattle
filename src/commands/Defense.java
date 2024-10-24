@@ -11,12 +11,12 @@ public class Defense extends Command {
 		super(owner);
 		this.name = "防御";
 		this.type = "buff";
-		
+
 		this.priority = 1;
 	}
 
 	public void exe() {
 		System.out.println(owner.getName() + "は身を守っている！");
-		owner.addHasAbnomal(new Defensed(owner, turn, num));
+		owner.addHasAbnomal(new Defensed(owner, owner, turn, num));
 	}
 }
