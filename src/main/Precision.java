@@ -1,15 +1,17 @@
 package main;
 
-public class Precision extends Abnomal {
-	String name = "精密";
+public class Precision extends Command {
+	int hitPerBuff = 30;
+	int turn = 3;
 
-	public Precision(Character owner, int turn, int num) {
-		super(owner, turn, num);
+	public Precision(Character owner) {
+		super(owner);
 
-		owner.hitPer += num;
+		name = "精密";
 	}
-	
-	public void cured() {
-		owner.hitPer -= num;
+
+	public void exe() {
+		System.out.println(owner + "は集中力を高めた！");
+		owner.hasAbnomal.add(new Precisioned(owner, turn, hitPerBuff));
 	}
 }

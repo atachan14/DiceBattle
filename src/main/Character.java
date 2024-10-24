@@ -10,32 +10,30 @@ public class Character {
 	int maxSp = 3;
 	int hitPer = 50;
 	int avoidPer = 50;
-
-	final int DEFAULT_HIT_PER = 50;
-	final int DEFAULT_AVOID_PER = 50;
-
-	ArrayList<Abnomal> hasAbnomal = new ArrayList<Abnomal>();
-	boolean suvive = true;
+	
+	Character target;
+	boolean survive = true;
 	int command = 0;
+	
+	Attack attack = new Attack(this);
+	Defense defense = new Defense(this);
 
+	ArrayList<Command> hasCommand = new ArrayList<Command>();
+	ArrayList<Abnomal> hasAbnomal = new ArrayList<Abnomal>();
+	
 	public Character() {
 	}
-
-	public void attack(Character taget) {
-		System.out.println(name + "は攻撃した！");
+	
+	public void setTarget(Character target) {
+		this.target = target;
+	}
+	
+	public void attackMesse(Command command) {
+		System.out.println(name + "の"+command.name+"！");
 	}
 
-	public void attack(Character taget, int bonus) {
-		System.out.println(name + "は攻撃した！");
+	public void bonusAttackMesse(Command command) {
+		System.out.println(name+"は"+target+"を"+command.name+"した！");
 	}
-
-	public void defense() {
-		System.out.println(name + "は防御した！");
-		hasAbnomal.add(new Defensed(this, 1, 30));
-	}
-
-	public void avoidDebuf() {
-
-	}
-
+	
 }

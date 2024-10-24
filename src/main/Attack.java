@@ -11,13 +11,23 @@ public class Attack extends Command {
 		dmg = owner.ad;
 	}
 
-	public void exe(Character target) {
-		System.out.println(owner + "の攻撃！");
-		if (dice.roll(owner) > dice.roll(target)) {
-			target.hp -= dmg;
-			System.out.println(target + "に" + dmg + "のダメージ！");
+	public void exe() {
+		owner.attackMesse(this);
+		if (dice.attackDice(owner,owner.target)) {
+			owner.target.hp -= dmg;
+			System.out.println(owner.target + "に" + dmg + "のダメージ！");
 		} else {
-			System.out.println(target + "は回避した！");
+			System.out.println(owner.target + "は回避した！");
+		}
+	}
+	
+	public void exe(int bonus) {
+		owner.bonusAttackMesse(this);
+		if (dice.attackDice(owner,owner.target)) {
+			owner.target.hp -= dmg;
+			System.out.println(owner.target + "に" + dmg + "のダメージと"+bonus+"の追加ダメージ！");
+		} else {
+			System.out.println(owner.target + "は回避した！");
 		}
 	}
 }

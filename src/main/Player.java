@@ -1,41 +1,40 @@
 package main;
 
 public class Player extends Character {
-	int sp;
-	int maxSp;
-
+	Bang bang = new Bang(this);
+	Precision precision = new Precision(this);
+	
 	public Player() {
 		this.name = "player";
-		this.ad = 30;
+		this.ad = 20;
 		this.hitPer = 70;
-		this.avoidPer = 70;
+		
+		hasCommand.add(attack);
+		hasCommand.add(defense);
+		hasCommand.add(bang);
+		hasCommand.add(precision);
 	}
-
-	public void bang(Character taget) {
-		sp--;
-		super.attack(taget, 30);
+	
+	public void attackMesse(Command command) {
+		System.out.println(name+"の"+command.name+"！");
 	}
-
-	public void precision() {
-		sp--;
-		hitPer += 40;
+	
+	public void bonusAttackMesse(Command command) {
+		System.out.println(name+"は"+target+"を"+command.name+"した！");
 	}
+	
 
 	public void select() {
 		while (true) {
 			command = new java.util.Scanner(System.in).nextInt();
 			switch (command) {
 			case 1:
-				System.out.println(name + "の攻撃！");
 				return;
 			case 2:
-				System.out.println(name + "の防御！");
 				return;
 			case 3:
-				System.out.println(name + "の強打！");
 				return;
 			case 4:
-				System.out.println(name + "の精密！");
 				return;
 			default:
 				System.out.println("不正な入力！");

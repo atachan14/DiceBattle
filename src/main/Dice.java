@@ -14,4 +14,12 @@ public class Dice {
 		System.out.println(player.name + ":" + num1 + "+" + num2 + "=" + sumNum);
 		return sumNum;
 	}
+
+	public boolean attackDice(Character owner, Character target) {
+		if (roll(owner) > roll(target)) {
+			return true;
+		}else {
+			return false;
+		}
+	}
 }

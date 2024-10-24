@@ -1,31 +1,22 @@
 package main;
 
 public class Enemy extends Character{
-	int chargeCount = 0;
+	ChargeAttack chargeAttack = new ChargeAttack(this);
+	Obstructioned obstruction = new Obstructioned(this);
 	
 	public Enemy() {
 		this.name = "enemy";
 		
+		hasCommand.add(attack);
+		hasCommand.add(defense);
+		hasCommand.add(chargeAttack);
+		hasCommand.add(obstruction);
 	}
 	
-	public void chargeAttack(Character taget,int bonus) {
-		sp--;
-		chargeCount++;
-		super.attack(taget,30);
-	}
 	
-	public void obstruction() {
-		sp--;
-		
-		
-	}
+	
 	
 	public void select() {
-		if(chargeCount ==1) {
-			chargeCount--;
-			command=31;
-			return;
-		}
 		
 		command = new java.util.Random().nextInt(4);
 		switch (command) {

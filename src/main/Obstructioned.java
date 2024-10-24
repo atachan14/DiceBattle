@@ -1,9 +1,9 @@
 package main;
 
-public class Obstruction extends Abnomal {
+public class Obstructioned extends Abnomal {
 	String name = "妨害";
 
-	public Obstruction(Character owner, int turn, int num) {
+	public Obstructioned(Character owner, int turn, int num) {
 		super(owner, turn, num);
 
 		owner.avoidPer -= num;

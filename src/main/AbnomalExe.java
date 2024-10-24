@@ -1,8 +1,8 @@
 package main;
 
 public class AbnomalExe {
-	Obstruction obstruction;
-	Precision precision;
+	Obstructioned obstruction;
+	Precisioned precision;
 	Display display = new Display();
 
 	public void allCountDown() {
