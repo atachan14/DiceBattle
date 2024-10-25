@@ -2,14 +2,14 @@ package characters;
 
 import commands.*;
 
-public class Player extends Character {
+public class Martial extends Character {
 	Attack attack = new Attack(this);
 	Defense defense = new Defense(this);
 	Bang bang = new Bang(this);
 	Precision precision = new Precision(this);
 
-	public Player() {
-		this.name = "player";
+	public Martial() {
+		this.name = "Martial";
 		this.camp = "player";
 		this.ad = 20;
 		this.hitPer = 70;

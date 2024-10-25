@@ -11,6 +11,7 @@ public class Execute {
 
 	public void stanbyFase() {
 		allCharactersAbnomalCountDown();
+		System.out.println();
 	}
 
 	public void selectFase() {
@@ -56,18 +57,33 @@ public class Execute {
 			}
 		}
 	}
-	
+
 	public void endFase() {
 		allCharactersSuviveCheck();
-//		allCharactersSpRecovery();
+//		allCharactersSpRecovery(); //再仕様変更に備えてコメントで保存。
 	}
 
 	public void allCharactersSuviveCheck() {
-		for (int i = 0;i<dbm.allCharacters.size();i++) {
+		for (int i = 0; i < dbm.allCharacters.size(); i++) {
 			if (dbm.allCharacters.get(i).getHp() < 0) {
 				dbm.allCharacters.get(i).dyingMesse();
-				dbm.allCharacters.remove(i);
-				i--;
+				dbm.allCharacters.get(i).dead();
+			}
+		}
+		for (int i = 0; i < dbm.allPlayers.size(); i++) {
+			if(dbm.allPlayers.get(i).getLife()) {
+				dbm.lastPlayerSuvive = true;
+				break;
+			}else {
+				dbm.lastPlayerSuvive=false;
+			}
+		}
+		for (int i = 0; i < dbm.allEnemys.size(); i++) {
+			if(dbm.allEnemys.get(i).getLife()) {
+				dbm.lastEnemySuvive = true;
+				break;
+			}else {
+				dbm.lastEnemySuvive=false;
 			}
 		}
 	}
@@ -78,13 +94,13 @@ public class Execute {
 		}
 	}
 
-	public void allCharactersSpRecovery() {
-		for (Character chara : dbm.allCharacters) {
-			if (chara.getSp() < chara.getMaxSp()) {
-				chara.addSp(1);
-			}
-		}
-	}
+//	public void allCharactersSpRecovery() {	////再仕様変更に備えてコメントで保存。
+//		for (Character chara : dbm.allCharacters) {
+//			if (chara.getSp() < chara.getMaxSp()) {
+//				chara.addSp(1);
+//			}
+//		}
+//	}
 
 	public void autoTargetSet() {
 		if (dbm.allEnemys.size() == 1) {
@@ -96,6 +112,14 @@ public class Execute {
 			for (Character enemy : dbm.allEnemys) {
 				enemy.setTarget(dbm.allPlayers.get(0));
 			}
+		}
+	}
+	
+	public void winnerJudge() {
+		if(dbm.lastPlayerSuvive) {
+			dbm.winner = "Player";
+		}else if(dbm.lastEnemySuvive){
+			dbm.winner = "Enemy";
 		}
 	}
 }

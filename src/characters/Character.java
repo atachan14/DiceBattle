@@ -6,8 +6,8 @@ import abnomals.Abnomal;
 import commands.Command;
 
 public class Character {
-	String name;
-	String camp;
+	String name = "character";
+	String camp = "player";
 	int hp = 100;
 	int ad = 10;
 	int sp = 0;
@@ -16,6 +16,7 @@ public class Character {
 	int avoidPer = 50;
 
 	public Character target;
+	boolean Life=true;
 	int skipSelect = 0;
 
 	Command reserveCommand;
@@ -39,11 +40,23 @@ public class Character {
 	}
 
 	public String getName() {
-		return name;
+		return this.name;
 	}
 
 	public String getCamp() {
 		return camp;
+	}
+
+	public void setCamp(String camp) {
+		this.camp = camp;
+	}
+	
+	public void dead() {
+		this.Life = false;
+	}
+	
+	public boolean getLife() {
+		return this.Life;
 	}
 
 	public int getSkipTurn() {

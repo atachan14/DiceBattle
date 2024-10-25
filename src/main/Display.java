@@ -47,15 +47,6 @@ public class Display {
 
 		}
 
-	public void spDisplay() {
-		for (int i = 0; i < dbm.player.getSp(); i++) {
-			System.out.print("●");
-		}
-		for (int i = 0; i < dbm.player.getMaxSp() - dbm.player.getSp(); i++) {
-			System.out.print("〇");
-		}
-		System.out.println();
-	}
 
 	public void endTurn() {
 		System.out.println("next turn ＞");
@@ -63,6 +54,12 @@ public class Display {
 	}
 	
 	public void result() {
-		System.out.println(dbm.allCharacters.get(0).getCamp()+"の勝利！");
+		System.out.println(dbm.winner+"の勝利！");
+		System.out.print("生存者:");
+		for(int i = 0; i < dbm.allPlayers.size() ; i++) {
+			if(dbm.allPlayers.get(i).getLife()) {
+				System.out.println(dbm.allPlayers.get(i).getName()+" ");
+			}
+		}
 	}
 }
