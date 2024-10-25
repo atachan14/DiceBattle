@@ -1,6 +1,6 @@
 package commands;
 
-import main.Character;
+import characters.Character;
 
 public class Bang extends Command {
 	int bonus = 25;

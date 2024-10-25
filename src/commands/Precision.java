@@ -1,7 +1,7 @@
 package commands;
 
 import abnomals.Precisioned;
-import main.Character;
+import characters.Character;
 
 public class Precision extends Command {
 	int hitPerBuff = 30;

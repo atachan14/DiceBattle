@@ -1,5 +1,7 @@
 package main;
 
+import characters.Character;
+
 public class Display {
 	DBM dbm;
 
@@ -18,27 +20,27 @@ public class Display {
 		System.out.println("----------------------------------------");
 		System.out.println(dbm.turnCount + "ターン目");
 		for(Character chara:dbm.allCharacters) {
-			System.out.printf("【%-14s",chara.name+"】");
+			System.out.printf("%-15s","【"+chara.getName()+"】");
 		}
 		System.out.println();
 		for(Character chara:dbm.allCharacters) {
-			System.out.printf("HP:%-12s",chara.hp);
+			System.out.printf("%-18s","HP:"+chara.getHp());
 		}
 		System.out.println();
 		for(Character chara:dbm.allCharacters) {
-			System.out.printf("SP:%-10s",chara.getSpDisplay());
+			System.out.printf("%-14s","SP:"+chara.getSpDisplay());
 		}
 		System.out.println();
 		for(Character chara:dbm.allCharacters) {
-			System.out.printf("攻撃力:%-9s",chara.ad);
+			System.out.printf("%-15s","攻撃力:"+chara.getAd());
 		}
 		System.out.println();
 		for(Character chara:dbm.allCharacters) {
-			System.out.printf("命中率:%-9s",chara.hitPer);
+			System.out.printf("%-15s","命中率:"+chara.getHitPer());
 		}
 		System.out.println();
 		for(Character chara:dbm.allCharacters) {
-			System.out.printf("回避率:%-9s",chara.avoidPer);
+			System.out.printf("%-15s","回避率:"+chara.getAvoidPer());
 		}
 		System.out.println();
 		System.out.println("-----------------------------");
@@ -46,10 +48,10 @@ public class Display {
 		}
 
 	public void spDisplay() {
-		for (int i = 0; i < dbm.player.sp; i++) {
+		for (int i = 0; i < dbm.player.getSp(); i++) {
 			System.out.print("●");
 		}
-		for (int i = 0; i < dbm.player.maxSp - dbm.player.sp; i++) {
+		for (int i = 0; i < dbm.player.getMaxSp() - dbm.player.getSp(); i++) {
 			System.out.print("〇");
 		}
 		System.out.println();
@@ -61,6 +63,6 @@ public class Display {
 	}
 	
 	public void result() {
-		System.out.println(dbm.allCharacters.get(0).camp+"の勝利！");
+		System.out.println(dbm.allCharacters.get(0).getCamp()+"の勝利！");
 	}
 }

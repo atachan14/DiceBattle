@@ -1,6 +1,6 @@
 package abnomals;
 
-import main.Character;
+import characters.Character;
 
 public class Obstructioned extends Abnomal {
 

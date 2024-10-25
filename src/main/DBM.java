@@ -1,13 +1,16 @@
 package main;
 
 import java.util.ArrayList;
-import commands.*;
+
+import characters.Character;
+import characters.Enemy;
+import characters.Player;
+import commands.Command;
 
 public class DBM {
-	Player player;
-	Enemy enemy;
-	ArrayList<Character> allPlayers = new ArrayList<Character>();
-	ArrayList<Character> allEnemys = new ArrayList<Character>();
+	Option option;
+	ArrayList<Player> allPlayers = new ArrayList<Player>();
+	ArrayList<Enemy> allEnemys = new ArrayList<Enemy>();
 	ArrayList<Character> allCharacters = new ArrayList<Character>();
 	ArrayList<Command> reserveCommands = new ArrayList<Command>();
 
@@ -17,23 +20,30 @@ public class DBM {
 
 	int turnCount = 0;
 
-	public DBM() {
-		this.player = new Player();
-		this.enemy = new Enemy();
+	public DBM(Option option) {
+		this.option = option;
+		this.execute = new Execute(this);
+		this.display = new Display(this);
 
 		allPlayers.add(player);
 		allEnemys.add(enemy);
 		allCharacters.add(player);
 		allCharacters.add(enemy);
 
-		execute = new Execute(this);
-		display = new Display(this);
+	}
+
+	public void setUp(Option option) {
+		for (int i = 0; i < option.players.length; i++) {
+			allPlayers.add(option.players[i]);
+		}
 	}
 
 	public void runGame() {
-
+		setUp(option);
 		display.opening();
-		while (allPlayers.size() > 0 || allEnemys.size() > 0) {
+		while (allPlayers.size() != 0 && allEnemys.size() != 0) {
+			System.out.println(allPlayers.size() + "," + allEnemys.size());
+
 			turnCount++;
 			execute.autoTargetSet();
 			display.startTurn();

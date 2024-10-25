@@ -1,7 +1,7 @@
 package commands;
 
 import abnomals.Obstructioned;
-import main.Character;
+import characters.Character;
 
 public class Obstruction extends Command {
 	int avoidPerDebuff = 30;

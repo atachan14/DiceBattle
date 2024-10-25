@@ -1,7 +1,7 @@
 package abnomals;
 
-import main.Character;
-import commands.*;
+import characters.Character;
+import commands.ChargeAttack;
 
 public class ChargedForAttack extends Abnomal {
 	ChargeAttack chargeAttack;
@@ -13,7 +13,7 @@ public class ChargedForAttack extends Abnomal {
 		this.chargeAttack = chargeAttack;
 	}
 
-	public void cured() {
+	public void curedEffect() {
 		owner.addSkipTurn(1);
 		owner.setCommand(chargeAttack);
 	}

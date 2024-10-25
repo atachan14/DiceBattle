@@ -1,6 +1,6 @@
 package abnomals;
 
-import main.Character;
+import characters.Character;
 
 public abstract class Abnomal {
 	String name;
@@ -9,6 +9,7 @@ public abstract class Abnomal {
 	int turn = 0;
 	int num = 0;
 	boolean buff;
+	String type ="";
 
 	public Abnomal(Character owner, Character from, int turn, int num) {
 		this.owner = owner;

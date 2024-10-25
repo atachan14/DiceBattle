@@ -1,6 +1,6 @@
 package abnomals;
 
-import main.Character;
+import characters.Character;
 
 public class Defensed extends Abnomal {
 	public Defensed(Character owner, Character from, int turn, int num) {
@@ -10,11 +10,7 @@ public class Defensed extends Abnomal {
 		owner.addAvoidPer(num);
 	}
 
-	public void cured() {
+	public void curedEffect() {
 		owner.addAvoidPer(-num);
-	}
-	
-	public void inTheMiddleMesse() {
-		
 	}
 }

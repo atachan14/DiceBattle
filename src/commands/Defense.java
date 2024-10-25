@@ -1,7 +1,7 @@
 package commands;
 
 import abnomals.Defensed;
-import main.Character;
+import characters.Character;
 
 public class Defense extends Command {
 	int num = 30;
@@ -15,8 +15,12 @@ public class Defense extends Command {
 		this.priority = 1;
 	}
 
-	public void exe() {
-		System.out.println(owner.getName() + "は身を守っている！");
+	public void exeEffect() {
+		owner.addSp(1);
 		owner.addHasAbnomal(new Defensed(owner, owner, turn, num));
+	}
+	
+	public void exeMesse() {
+		System.out.println(owner.getName() + "は身を守っている！");
 	}
 }

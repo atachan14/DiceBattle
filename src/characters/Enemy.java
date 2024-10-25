@@ -1,4 +1,4 @@
-package main;
+package characters;
 
 import commands.Attack;
 import commands.ChargeForAttack;
@@ -19,5 +19,9 @@ public class Enemy extends Character {
 		hasCommand[1] = defense;
 		hasCommand[2] = chargeAttack;
 		hasCommand[3] = obstruction;
+	}
+	
+	public String getSpDisplay() {
+		return "？？？？";
 	}
 }

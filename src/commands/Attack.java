@@ -1,6 +1,6 @@
 package commands;
 
-import main.Character;
+import characters.Character;
 import main.Dice;
 
 public class Attack extends Command {
@@ -13,6 +13,7 @@ public class Attack extends Command {
 	}
 	
 	public void exeEffect() {
+		owner.addSp(1);
 		dmg=owner.getAd();
 		if (dice.attackDice(owner, owner.target)) {
 			owner.target.addHp(-dmg);
@@ -23,6 +24,7 @@ public class Attack extends Command {
 	}
 
 	public void exeEffect(int bonus) {
+		owner.addSp(1);
 		dmg=owner.getAd();
 		if (dice.attackDice(owner, owner.target)) {
 			owner.target.addHp(-(dmg+bonus));
@@ -30,6 +32,5 @@ public class Attack extends Command {
 		} else {
 			owner.target.avoidMesse();
 		}
-
 	}
 }

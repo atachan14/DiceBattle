@@ -1,11 +1,9 @@
-package main;
+package characters;
 
 import java.util.ArrayList;
 
 import abnomals.Abnomal;
-import commands.Attack;
 import commands.Command;
-import commands.Defense;
 
 public class Character {
 	String name;
@@ -18,8 +16,7 @@ public class Character {
 	int avoidPer = 50;
 
 	public Character target;
-	boolean survive = true;
-	int skipTurn = 0;
+	int skipSelect = 0;
 
 	Command reserveCommand;
 	Command[] hasCommand = new Command[4];
@@ -45,6 +42,26 @@ public class Character {
 		return name;
 	}
 
+	public String getCamp() {
+		return camp;
+	}
+
+	public int getSkipTurn() {
+		return skipSelect;
+	}
+
+	public void addSkipTurn(int num) {
+		skipSelect += num;
+	}
+
+	public Command getReserveCommand() {
+		return reserveCommand;
+	}
+
+	public void setReserveCommand(Command command) {
+		reserveCommand = command;
+	}
+
 	public void attackMesse(Command command) {
 		System.out.println(name + "の" + command.getName() + "！");
 	}
@@ -65,10 +82,6 @@ public class Character {
 		this.target = target;
 	}
 
-	public void addSkipTurn(int num) {
-		skipTurn += num;
-	}
-
 	public void addHasAbnomal(Abnomal abnomal) {
 		hasAbnomal.add(abnomal);
 	}
@@ -78,23 +91,16 @@ public class Character {
 	}
 
 	public void allAbnomalCountDown() {
-		System.out.println("aacd start");
 		for (int i = 0; i < hasAbnomal.size(); i++) {
-
-			System.out.print(hasAbnomal.get(i).getName() + " ");
-			System.out.println(hasAbnomal.get(i).getTurn());
 			if (hasAbnomal.get(i).getTurn() > 0) {
-				if (hasAbnomal.get(i).getTurn() > 1) {
-					hasAbnomal.get(i).inTheMiddle();
-					hasAbnomal.get(i).addTurn(-1);
-					continue;
-				}
-
-				hasAbnomal.get(i).cured();
 				hasAbnomal.get(i).addTurn(-1);
+			}
+			if (hasAbnomal.get(i).getTurn() > 0) {
+				hasAbnomal.get(i).inTheMiddle();
+			} else {
+				hasAbnomal.get(i).cured();
 				hasAbnomal.remove(i);
 				i--;
-
 			}
 		}
 	}

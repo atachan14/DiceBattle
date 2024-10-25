@@ -1,6 +1,6 @@
 package commands;
 
-import main.Character;
+import characters.Character;
 
 public class ChargeAttack extends Command {
 	int bonus;

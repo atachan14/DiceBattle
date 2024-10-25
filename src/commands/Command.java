@@ -1,6 +1,6 @@
 package commands;
 
-import main.Character;
+import characters.Character;
 
 public abstract class Command {
 	String name;

@@ -1,6 +1,6 @@
 package abnomals;
 
-import main.Character;
+import characters.Character;
 
 public class Precisioned extends Abnomal {
 
@@ -11,9 +11,7 @@ public class Precisioned extends Abnomal {
 		owner.addHitPer(num);
 	}
 
-	public void cured() {
+	public void curedEffect() {
 		owner.addHitPer(-num);
 	}
-	
-	
 }

@@ -1,7 +1,7 @@
 package commands;
 
 import abnomals.ChargedForAttack;
-import main.Character;
+import characters.Character;
 
 public class ChargeForAttack extends Command {
 	int bonus = 25;

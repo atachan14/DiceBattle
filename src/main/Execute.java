@@ -1,5 +1,6 @@
 package main;
 
+import characters.Character;
 
 public class Execute {
 	DBM dbm;
@@ -10,18 +11,17 @@ public class Execute {
 
 	public void stanbyFase() {
 		allCharactersAbnomalCountDown();
-		System.out.println("acacd");
 	}
 
 	public void selectFase() {
 		for (Character chara : dbm.allCharacters) {
-			if (chara.skipTurn > 0) {
-				chara.skipTurn--;
-				dbm.reserveCommands.add(chara.reserveCommand);
+			if (chara.getSkipTurn() > 0) {
+				chara.addSkipTurn(-1);
+				dbm.reserveCommands.add(chara.getReserveCommand());
 				continue;
 			}
 			chara.selectCommand();
-			dbm.reserveCommands.add(chara.reserveCommand);
+			dbm.reserveCommands.add(chara.getReserveCommand());
 		}
 	}
 
@@ -32,6 +32,7 @@ public class Execute {
 				dbm.reserveCommands.remove(i);
 				i--;
 			}
+			System.out.println();
 		}
 	}
 
@@ -42,6 +43,7 @@ public class Execute {
 				dbm.reserveCommands.remove(i);
 				i--;
 			}
+			System.out.println();
 		}
 	}
 
@@ -57,12 +59,12 @@ public class Execute {
 	
 	public void endFase() {
 		allCharactersSuviveCheck();
-		allCharactersSpRecovery();
+//		allCharactersSpRecovery();
 	}
 
 	public void allCharactersSuviveCheck() {
 		for (int i = 0;i<dbm.allCharacters.size();i++) {
-			if (dbm.allCharacters.get(i).hp < 0) {
+			if (dbm.allCharacters.get(i).getHp() < 0) {
 				dbm.allCharacters.get(i).dyingMesse();
 				dbm.allCharacters.remove(i);
 				i--;
@@ -78,7 +80,7 @@ public class Execute {
 
 	public void allCharactersSpRecovery() {
 		for (Character chara : dbm.allCharacters) {
-			if (chara.sp < chara.maxSp) {
+			if (chara.getSp() < chara.getMaxSp()) {
 				chara.addSp(1);
 			}
 		}
