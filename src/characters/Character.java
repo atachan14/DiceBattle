@@ -10,13 +10,15 @@ public class Character {
 	String camp = "player";
 	int hp = 100;
 	int ad = 10;
+	int ap = 10;
+
 	int sp = 0;
 	int maxSp = 4;
 	int hitPer = 50;
 	int avoidPer = 50;
 
 	public Character target;
-	boolean Life=true;
+	boolean Life = true;
 	int skipSelect = 0;
 
 	Command reserveCommand;
@@ -27,16 +29,32 @@ public class Character {
 	}
 
 	public void selectCommand() {
-		int input = new java.util.Random().nextInt(4);
-		reserveCommand = hasCommand[input];
+		if (this.camp == "player") {
+			System.out.println(name + "'s select");
+			int input = 0;
+
+			while (true) {
+				displayCommandSelect();
+				input = new java.util.Scanner(System.in).nextInt();
+				if (input < 1 || input > 4) {
+					System.out.println("不正な入力！");
+				} else {
+					break;
+				}
+			}
+			reserveCommand = hasCommand[input - 1];
+		} else {
+			int input = new java.util.Random().nextInt(4);
+			this.reserveCommand = this.hasCommand[input];
+		}
 	}
 
 	public void setCommand(Command command) {
-		reserveCommand = command;
+		this.reserveCommand = command;
 	}
 
 	public Command getAttack() {
-		return hasCommand[0];
+		return this.hasCommand[0];
 	}
 
 	public String getName() {
@@ -50,11 +68,11 @@ public class Character {
 	public void setCamp(String camp) {
 		this.camp = camp;
 	}
-	
+
 	public void dead() {
 		this.Life = false;
 	}
-	
+
 	public boolean getLife() {
 		return this.Life;
 	}
@@ -64,31 +82,35 @@ public class Character {
 	}
 
 	public void addSkipTurn(int num) {
-		skipSelect += num;
+		this.skipSelect += num;
 	}
 
 	public Command getReserveCommand() {
-		return reserveCommand;
+		return this.reserveCommand;
 	}
 
 	public void setReserveCommand(Command command) {
-		reserveCommand = command;
+		this.reserveCommand = command;
 	}
 
 	public void attackMesse(Command command) {
-		System.out.println(name + "の" + command.getName() + "！");
+		System.out.println(this.name + "の" + command.getName() + "！");
 	}
 
 	public void bonusAttackMesse(Command command) {
-		System.out.println(name + "は" + target + "を" + command.getName() + "した！");
+		System.out.println(this.name + "は" + this.target + "を" + command.getName() + "した！");
 	}
 
 	public void avoidMesse() {
-		System.out.println(name + "は回避した！");
+		System.out.println(this.name + "は回避した！");
 	}
 
 	public void dyingMesse() {
-		System.out.println(name + "は消滅した・・・");
+		System.out.println(this.name + "は消滅した・・・");
+	}
+
+	public Character getTarget() {
+		return this.target;
 	}
 
 	public void setTarget(Character target) {
@@ -96,23 +118,23 @@ public class Character {
 	}
 
 	public void addHasAbnomal(Abnomal abnomal) {
-		hasAbnomal.add(abnomal);
+		this.hasAbnomal.add(abnomal);
 	}
 
 	public void removeHasAbnomal(Abnomal abnomal) {
-		hasAbnomal.remove(abnomal);
+		this.hasAbnomal.remove(abnomal);
 	}
 
 	public void allAbnomalCountDown() {
-		for (int i = 0; i < hasAbnomal.size(); i++) {
-			if (hasAbnomal.get(i).getTurn() > 0) {
-				hasAbnomal.get(i).addTurn(-1);
+		for (int i = 0; i < this.hasAbnomal.size(); i++) {
+			if (this.hasAbnomal.get(i).getTurn() > 0) {
+				this.hasAbnomal.get(i).addTurn(-1);
 			}
-			if (hasAbnomal.get(i).getTurn() > 0) {
-				hasAbnomal.get(i).inTheMiddle();
+			if (this.hasAbnomal.get(i).getTurn() > 0) {
+				this.hasAbnomal.get(i).inTheMiddle();
 			} else {
-				hasAbnomal.get(i).cured();
-				hasAbnomal.remove(i);
+				this.hasAbnomal.get(i).cured();
+				this.hasAbnomal.remove(i);
 				i--;
 			}
 		}
@@ -126,60 +148,73 @@ public class Character {
 	}
 
 	public int getHp() {
-		return hp;
-	}
-
-	public int getSp() {
-		return sp;
-	}
-
-	public int getMaxSp() {
-		return maxSp;
-	}
-
-	public int getAd() {
-		return ad;
-	}
-
-	public int getHitPer() {
-		return hitPer;
-	}
-
-	public int getAvoidPer() {
-		return avoidPer;
+		return this.hp;
 	}
 
 	public void addHp(int num) {
-		hp += num;
+		this.hp += num;
+	}
+
+	public int getSp() {
+		return this.sp;
 	}
 
 	public void addSp(int num) {
-		if (sp + num > maxSp) {
-			num = maxSp - sp;
+		if (this.sp + num > this.maxSp) {
+			num = this.maxSp - this.sp;
 		}
-		sp += num;
+		this.sp += num;
+	}
+
+	public int getMaxSp() {
+		return this.maxSp;
+	}
+
+	public int getAd() {
+		return this.ad;
 	}
 
 	public void addAd(int num) {
-		ad += num;
+		this.ad += num;
+	}
+
+	public int getAp() {
+		return this.ap;
+	}
+
+	public void addAp(int ap) {
+		this.ap += ap;
+	}
+
+	public int getHitPer() {
+		return this.hitPer;
 	}
 
 	public void addHitPer(int num) {
-		hitPer += num;
+		this.hitPer += num;
+	}
+
+	public int getAvoidPer() {
+		return this.avoidPer;
 	}
 
 	public void addAvoidPer(int num) {
-		avoidPer += num;
+		this.avoidPer += num;
 	}
 
 	public String getSpDisplay() {
-		String SpDisplay = "";
-		for (int i = 0; i < sp; i++) {
-			SpDisplay += "●";
+		if (this.camp == "player") {
+			String SpDisplay = "";
+			for (int i = 0; i < sp; i++) {
+				SpDisplay += "●";
+			}
+			for (int i = 0; i < maxSp - sp; i++) {
+				SpDisplay += "〇";
+			}
+			return SpDisplay;
+		} else {
+			String SpDisplay = "　";
+			return SpDisplay;
 		}
-		for (int i = 0; i < maxSp - sp; i++) {
-			SpDisplay += "〇";
-		}
-		return SpDisplay;
 	}
 }

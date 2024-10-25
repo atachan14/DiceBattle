@@ -20,8 +20,4 @@ public class Goblin extends Character {
 		hasCommand[2] = chargeAttack;
 		hasCommand[3] = obstruction;
 	}
-	
-	public String getSpDisplay() {
-		return "？？？？";
-	}
 }
