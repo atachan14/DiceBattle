@@ -3,19 +3,16 @@ package abnomals;
 import main.Character;
 
 public class Obstructioned extends Abnomal {
-	String name = "妨害";
 
 	public Obstructioned(Character owner, Character from, int turn, int num) {
 		super(owner, from, turn, num);
 
+		this.name = "妨害";
 		owner.addAvoidPer(-num);
 	}
-
-	public void cured() {
+	
+	public void curedEffect() {
 		owner.addAvoidPer(num);
 	}
 	
-	public void inTheMiddleMesse() {
-
-	}
 }

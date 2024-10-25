@@ -10,6 +10,7 @@ public class Execute {
 
 	public void stanbyFase() {
 		allCharactersAbnomalCountDown();
+		System.out.println("acacd");
 	}
 
 	public void selectFase() {

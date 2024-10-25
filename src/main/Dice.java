@@ -8,8 +8,8 @@ public class Dice {
 
 	public int roll(Character chara) {
 		int sumNum = 0;
-		num1 = new java.util.Random().nextInt(size);
-		num2 = new java.util.Random().nextInt(size);
+		num1 = new java.util.Random().nextInt(size)+1;
+		num2 = new java.util.Random().nextInt(size)+1;
 		sumNum = num1 + num2;
 		System.out.println("	"+chara.name + ":" + num1 + "+" + num2 + "=" + sumNum);
 		return sumNum;

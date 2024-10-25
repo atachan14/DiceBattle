@@ -18,8 +18,14 @@ public abstract class Abnomal {
 	}
 
 	public void cured() {
+		curedEffect();
 		curedMesse();
 	}
+
+	public void curedEffect() {
+		System.out.println("default curedEffect");
+	}
+	
 	
 	public void curedMesse() {
 		if (buff) {
@@ -36,10 +42,10 @@ public abstract class Abnomal {
 	public void inTheMiddleMesse() {
 		System.out.print("・");
 		if(owner == from) {
-		System.out.println(owner.getName()+"は"+name+"状態だ！");
+		System.out.println(owner.getName()+"は"+name+"状態だ！(残り"+turn+"ターン）");
 		}
 		if(owner != from) {
-			System.out.println(owner.getName()+"は"+from.getName()+"の"+name+"を受けている！");
+			System.out.println(owner.getName()+"は"+from.getName()+"の"+name+"を受けている！(残り"+turn+"ターン）");
 		}
 	}
 	
@@ -49,6 +55,10 @@ public abstract class Abnomal {
 		} else {
 			return "デバフ";
 		}
+	}
+	
+	public String getName() {
+		return name;
 	}
 	
 	public int getTurn() {

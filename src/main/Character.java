@@ -78,16 +78,24 @@ public class Character {
 	}
 
 	public void allAbnomalCountDown() {
+		System.out.println("aacd start");
 		for (int i = 0; i < hasAbnomal.size(); i++) {
-			if (hasAbnomal.get(i).getTurn() > 1) {
-				hasAbnomal.get(i).inTheMiddle();
-			}
-			if (hasAbnomal.get(i).getTurn() == 1) {
+
+			System.out.print(hasAbnomal.get(i).getName() + " ");
+			System.out.println(hasAbnomal.get(i).getTurn());
+			if (hasAbnomal.get(i).getTurn() > 0) {
+				if (hasAbnomal.get(i).getTurn() > 1) {
+					hasAbnomal.get(i).inTheMiddle();
+					hasAbnomal.get(i).addTurn(-1);
+					continue;
+				}
+
 				hasAbnomal.get(i).cured();
+				hasAbnomal.get(i).addTurn(-1);
 				hasAbnomal.remove(i);
 				i--;
-			}
 
+			}
 		}
 	}
 
