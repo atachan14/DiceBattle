@@ -20,27 +20,27 @@ public class Display {
 		System.out.println("----------------------------------------");
 		System.out.println(dbm.turnCount + "ターン目");
 		for(Character chara:dbm.allCharacters) {
-			System.out.printf("%-15s","【"+chara.getName()+"】");
+			System.out.printf("%-15s","【"+chara.getCamp()+"."+chara.getName()+"】");
 		}
 		System.out.println();
 		for(Character chara:dbm.allCharacters) {
-			System.out.printf("%-18s","HP:"+chara.getHp());
+			System.out.printf("%-15s","HP:"+chara.getHp());
 		}
 		System.out.println();
 		for(Character chara:dbm.allCharacters) {
-			System.out.printf("%-14s","SP:"+chara.getSpDisplay());
+			System.out.printf("%-12s","SP:"+chara.getSpDisplay());
 		}
 		System.out.println();
 		for(Character chara:dbm.allCharacters) {
-			System.out.printf("%-15s","攻撃力:"+chara.getAd());
+			System.out.printf("%-13s","攻撃力:"+chara.getAd());
 		}
 		System.out.println();
 		for(Character chara:dbm.allCharacters) {
-			System.out.printf("%-15s","命中率:"+chara.getHitPer());
+			System.out.printf("%-13s","命中率:"+chara.getHitPer());
 		}
 		System.out.println();
 		for(Character chara:dbm.allCharacters) {
-			System.out.printf("%-15s","回避率:"+chara.getAvoidPer());
+			System.out.printf("%-13s","回避率:"+chara.getAvoidPer());
 		}
 		System.out.println();
 		System.out.println("-----------------------------");

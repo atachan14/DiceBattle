@@ -1,13 +1,14 @@
 package characters;
 
 import java.util.ArrayList;
+import main.DBM;
 
 import abnomals.Abnomal;
 import commands.Command;
 
 public class Character {
 	String name = "character";
-	String camp = "player";
+	String camp = "p";
 	int hp = 100;
 	int ad = 10;
 	int ap = 10;
@@ -29,10 +30,9 @@ public class Character {
 	}
 
 	public void selectCommand() {
-		if (this.camp == "player") {
-			System.out.println(name + "'s select");
+		if (this.camp == "p") { // playerの処理
+			System.out.println(this.name + "'s select");
 			int input = 0;
-
 			while (true) {
 				displayCommandSelect();
 				input = new java.util.Scanner(System.in).nextInt();
@@ -42,10 +42,26 @@ public class Character {
 					break;
 				}
 			}
-			reserveCommand = hasCommand[input - 1];
-		} else {
+			this.reserveCommand = this.hasCommand[input - 1];
+
+		} else { // enemyの処理
 			int input = new java.util.Random().nextInt(4);
 			this.reserveCommand = this.hasCommand[input];
+		}
+	}
+
+	public void selectTarget(ArrayList<Character> allCharacters) {
+		for (int i = 0; i < allCharacters.size(); i++) {
+			System.out.print((i + 1) + "." + allCharacters.get(i).getName() + " ");
+			int input;
+			while (true) {
+				input = new java.util.Scanner(System.in).nextInt();
+				if (input < 1 || allEnemys.size() < input) {
+					System.out.println("不正な入力です。");
+				}
+				break;
+			}
+			this.target = allEnemys.get(input - 1);
 		}
 	}
 
@@ -62,7 +78,7 @@ public class Character {
 	}
 
 	public String getCamp() {
-		return camp;
+		return this.camp;
 	}
 
 	public void setCamp(String camp) {
@@ -203,7 +219,7 @@ public class Character {
 	}
 
 	public String getSpDisplay() {
-		if (this.camp == "player") {
+		if (this.camp == "p") {
 			String SpDisplay = "";
 			for (int i = 0; i < sp; i++) {
 				SpDisplay += "●";
@@ -213,7 +229,7 @@ public class Character {
 			}
 			return SpDisplay;
 		} else {
-			String SpDisplay = "　";
+			String SpDisplay = "       ";
 			return SpDisplay;
 		}
 	}

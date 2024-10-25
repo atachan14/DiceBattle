@@ -22,21 +22,21 @@ public class DBM {
 	boolean lastEnemySuvive = true;
 	String winner = "";
 
-
-	public DBM(Option option) {
-		this.option = option;
+	public DBM() {
+		this.option = new Option();
 		this.execute = new Execute(this);
 		this.display = new Display(this);
-	}	
+	}
 
 	public void runGame() {
-		
+
+		startDisplay();
 		generateCharacter();
 		display.opening();
-		
+
 		while (lastPlayerSuvive && lastEnemySuvive) {
 			turnCount++;
-			execute.autoTargetSet();
+			
 			display.startTurn();
 			execute.stanbyFase();
 			execute.selectFase();
@@ -52,6 +52,26 @@ public class DBM {
 		display.result();
 	}
 	
+	public void startDisplay() {
+		while (true) {
+			System.out.println("1.start 8.option 9.end");
+			int input = new java.util.Scanner(System.in).nextInt();
+			switch (input) {
+			case 1:
+				return;
+			case 8:
+				option.menu();
+				break;
+			case 9:
+				Main.endDisplay();
+				break;
+			default:
+				System.out.println("不正な入力です。");
+				continue;
+			}
+		}
+	}
+
 	public void generateCharacter() {
 		for (int i = 0; i < option.players.size(); i++) {
 			switch (option.players.get(i)) {
@@ -92,11 +112,11 @@ public class DBM {
 			}
 		}
 		for (Character player : allPlayers) {
-			player.setCamp("player");
+			player.setCamp("p");
 			allCharacters.add(player);
 		}
 		for (Character enemy : allEnemys) {
-			enemy.setCamp("enemy");
+			enemy.setCamp("e");
 			allCharacters.add(enemy);
 		}
 	}

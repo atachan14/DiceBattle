@@ -13,7 +13,7 @@ public class Goblin extends Character {
 
 	public Goblin() {
 		this.name = "Goblin";
-		this.camp = "enemy";
+		this.camp = "e";
 
 		hasCommand[0] = attack;
 		hasCommand[1] = defense;

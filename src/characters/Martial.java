@@ -10,7 +10,7 @@ public class Martial extends Character {
 
 	public Martial() {
 		this.name = "Martial";
-		this.camp = "player";
+		this.camp = "p";
 		this.ad = 20;
 		this.hitPer = 70;
 

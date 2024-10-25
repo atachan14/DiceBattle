@@ -21,10 +21,26 @@ public class Execute {
 				dbm.reserveCommands.add(chara.getReserveCommand());
 				continue;
 			}
+			
 			chara.selectCommand();
+			chara.selectTarget(dbm.allCharacters,dbm.allEnemys);
 			dbm.reserveCommands.add(chara.getReserveCommand());
+			
 		}
 	}
+	
+//	public void autoTargetSet() {
+//		if (dbm.allEnemys.size() == 1) {
+//			for (Character player : dbm.allPlayers) {
+//				player.setTarget(dbm.allEnemys.get(0));
+//			}
+//		}
+//		if (dbm.allPlayers.size() == 1) {
+//			for (Character enemy : dbm.allEnemys) {
+//				enemy.setTarget(dbm.allPlayers.get(0));
+//			}
+//		}
+//	}
 
 	public void priority1Fase() {
 		for (int i = 0; i < dbm.reserveCommands.size(); i++) {
@@ -102,18 +118,7 @@ public class Execute {
 //		}
 //	}
 
-	public void autoTargetSet() {
-		if (dbm.allEnemys.size() == 1) {
-			for (Character player : dbm.allPlayers) {
-				player.setTarget(dbm.allEnemys.get(0));
-			}
-		}
-		if (dbm.allPlayers.size() == 1) {
-			for (Character enemy : dbm.allEnemys) {
-				enemy.setTarget(dbm.allPlayers.get(0));
-			}
-		}
-	}
+	
 	
 	public void winnerJudge() {
 		if(dbm.lastPlayerSuvive) {
