@@ -20,12 +20,12 @@ public class Character {
 	int hitPer = 50;
 	int avoidPer = 50;
 
-	Character target;
 	boolean Life = true;
 	int skipSelect = 0;
 
 	Command reserveCommand;
 	Command[] hasCommand = new Command[4];
+	ArrayList<Command> canCommand = new ArrayList<Command>();
 	ArrayList<Abnomal> hasAbnomal = new ArrayList<Abnomal>();
 
 	public Character() {
@@ -40,8 +40,13 @@ public class Character {
 			this.reserveCommand = this.hasCommand[input - 1];
 
 		} else { // enemyの処理
-			int input = new java.util.Random().nextInt(4);
-			this.reserveCommand = this.hasCommand[input];
+			for (Command command : hasCommand) {
+				if (command.getNeedSp() <= this.sp) {
+					canCommand.add(command);
+				}
+			}
+			int input = new java.util.Random().nextInt(canCommand.size());
+			this.reserveCommand = this.canCommand.get(input);
 
 		}
 	}
@@ -54,6 +59,10 @@ public class Character {
 	}
 
 	public void selectTarget() {
+		if (reserveCommand.getEreaCode() == "self") {
+			return;
+		}
+
 		if (this.camp == "P") { // playerの処理
 			System.out.print("   　target: ");
 			displayTargetSelect();
@@ -139,24 +148,33 @@ public class Character {
 	}
 
 	public void bonusAttackMesse(Command command) {
-		System.out.println(getDCN() + "は" + this.target.getDCN() + "を" + command.getName() + "した！");
+		System.out.println(getDCN() + "は" + command.getTarget().getDCN() + "を" + command.getName() + "した！");
+	}
+
+	public void overKillMesse() {
+		System.out.println(getDCN() + "の殺意は止まらない！");
+	}
+
+	public void shortageSpMesse() {
+		System.out.print(getDCN() + "はSPが足りなかった！");
 	}
 
 	public void avoidMesse() {
-		System.out.println(getDCN() + "は回避した！");
+		System.out.print(getDCN() + "は回避した！");
 	}
 
 	public void dyingMesse() {
-		System.out.println(getDCN() + "は消滅した・・・");
+		System.out.println();
+		System.out.print(getDCN() + "は死亡した・・・");
 	}
 
-	public Character getTarget() {
-		return this.target;
-	}
-
-	public void setTarget(Character target) {
-		this.target = target;
-	}
+//	public Character getTarget() {
+//		return this.target;
+//	}
+//
+//	public void setTarget(Character target) {
+//		this.target = target;
+//	}
 
 	public void addHasAbnomal(Abnomal abnomal) {
 		this.hasAbnomal.add(abnomal);
@@ -187,6 +205,10 @@ public class Character {
 
 	public void addHp(int num) {
 		this.hp += num;
+		if (hp <= 0 && Life) {
+			dead();
+			dyingMesse();
+		}
 	}
 
 	public int getSp() {

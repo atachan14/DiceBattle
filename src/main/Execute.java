@@ -22,6 +22,10 @@ public class Execute {
 				dbm.reserveCommands.add(chara.getReserveCommand());
 				continue;
 			}
+			if(chara.getLife()==false) {
+				continue;
+			}
+			
 			chara.selectCommand();
 			setEreaByCode(chara.getReserveCommand());
 			chara.selectTarget();
@@ -42,6 +46,8 @@ public class Execute {
 			case "all":
 				command.setErea(dbm.allCharacters);
 				break;
+			case "self":
+				return;
 			default:
 				System.out.println("setEreaByCode＞e＞不明");
 				break;
@@ -58,6 +64,8 @@ public class Execute {
 			case "all":
 				command.setErea(dbm.allCharacters);
 				break;
+			case "self":
+				return;
 			default:
 				System.out.println("setEreaByCode＞e＞不明");
 				break;
@@ -90,10 +98,10 @@ public class Execute {
 				i--;
 				System.out.print(" ＞");
 				new java.util.Scanner(System.in).nextLine();
-				System.out.println();
 			}
 			
 		}
+		System.out.println();
 	}
 
 	public void priority2Fase() {
@@ -107,6 +115,7 @@ public class Execute {
 				System.out.println();
 			}
 		}
+		System.out.println();
 	}
 
 	public void priority3Fase() {
@@ -121,16 +130,16 @@ public class Execute {
 
 	public void endFase() {
 		allCharactersSuviveCheck();
-//		allCharactersSpRecovery(); //再仕様変更に備えてコメントで保存。
+//		allCharactersSpRecovery(); //再仕様変更に備えて保存。
 	}
 
 	public void allCharactersSuviveCheck() {
-		for (int i = 0; i < dbm.allCharacters.size(); i++) {
-			if (dbm.allCharacters.get(i).getHp() < 0) {
-				dbm.allCharacters.get(i).dyingMesse();
-				dbm.allCharacters.get(i).dead();
-			}
-		}
+//		for (int i = 0; i < dbm.allCharacters.size(); i++) {
+//			if (dbm.allCharacters.get(i).getHp() < 0) {
+//				dbm.allCharacters.get(i).dyingMesse();
+//				dbm.allCharacters.get(i).dead();
+//			}
+//		}
 		for (int i = 0; i < dbm.allPlayers.size(); i++) {
 			if (dbm.allPlayers.get(i).getLife()) {
 				dbm.lastPlayerSuvive = true;
@@ -155,7 +164,7 @@ public class Execute {
 		}
 	}
 
-//	public void allCharactersSpRecovery() {	////再仕様変更に備えてコメントで保存。
+//	public void allCharactersSpRecovery() {	////再仕様変更に備えて保存。
 //		for (Character chara : dbm.allCharacters) {
 //			if (chara.getSp() < chara.getMaxSp()) {
 //				chara.addSp(1);

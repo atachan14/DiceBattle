@@ -20,7 +20,7 @@ public class Display {
 		System.out.println("----------------------------------------");
 		System.out.println(dbm.turnCount + "ターン目");
 		for (Character chara : dbm.allCharacters) {
-			System.out.printf("%-15s", "【" + chara.getDCN() + "】");
+			System.out.printf("%-15s", "【" + chara.getDCN() + deadSuffix(chara) + "】");
 		}
 		System.out.println();
 		for (Character chara : dbm.allCharacters) {
@@ -45,6 +45,13 @@ public class Display {
 		System.out.println();
 		System.out.println("-----------------------------");
 
+	}
+
+	public String deadSuffix(Character chara) {
+		if (chara.getLife() == false) {
+			return "(dead)";
+		}
+		return "";
 	}
 
 	public void endTurn() {

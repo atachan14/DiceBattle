@@ -29,10 +29,11 @@ public abstract class Abnomal {
 	
 	
 	public void curedMesse() {
+		System.out.print("・");
 		if (buff) {
-			System.out.println(owner.getName() + "の" + name + "が終わった・・・");
+			System.out.println(owner.getName() + "の" + name + "状態が終わった！");
 		}else {
-			System.out.println(owner.getName()+"は"+name+"から回復した・・・");
+			System.out.println(owner.getName()+"は"+name+"から回復した！");
 		}
 	}
 	

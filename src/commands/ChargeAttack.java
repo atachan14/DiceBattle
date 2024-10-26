@@ -6,10 +6,11 @@ public class ChargeAttack extends Command {
 	int bonus;
 	int turn = 1;
 
-	public ChargeAttack(Character owner, int bonus) {
+	public ChargeAttack(Character owner, int bonus,Character target) {
 		super(owner);
 		name = "溜め攻撃";
 		type = "強化攻撃";
+		this.target =target;
 		
 		this.bonus = bonus;
 	}
@@ -19,6 +20,8 @@ public class ChargeAttack extends Command {
 	}
 
 	public void exeEffect() {
-		owner.getAttack().exe(bonus);
+		Attack attack = new Attack(owner);
+		attack.setTarget(target);
+		attack.exe(bonus);
 	}
 }

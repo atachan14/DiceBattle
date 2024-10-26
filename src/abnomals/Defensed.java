@@ -13,4 +13,8 @@ public class Defensed extends Abnomal {
 	public void curedEffect() {
 		owner.addAvoidPer(-num);
 	}
+	
+	public void curedMesse() {
+		
+	}
 }

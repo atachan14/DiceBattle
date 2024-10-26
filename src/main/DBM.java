@@ -46,7 +46,7 @@ public class DBM {
 			execute.priority2Fase();
 			execute.priority3Fase();
 			execute.endFase();
-			display.endTurn();
+//			display.endTurn();
 		}
 		execute.winnerJudge();
 		display.result();
@@ -78,42 +78,10 @@ public class DBM {
 
 	public void generateCharacter() {
 		for (int i = 0; i < option.players.size(); i++) {
-			switch (option.players.get(i)) {
-			case "Martial":
-				allPlayers.add(new Martial());
-				break;
-			case "Goblin":
-				allPlayers.add(new Goblin());
-				break;
-			case "Warrior":
-				allPlayers.add(new Warrior());
-				break;
-			case "Wizard":
-				allPlayers.add(new Wizard());
-				break;
-			case "Monk":
-				allPlayers.add(new Monk());
-				break;
-			}
+			convertOptionCode(allPlayers,option.players.get(i));
 		}
 		for (int i = 0; i < option.enemys.size(); i++) {
-			switch (option.enemys.get(i)) {
-			case "Martial":
-				allEnemys.add(new Martial());
-				break;
-			case "Goblin":
-				allEnemys.add(new Goblin());
-				break;
-			case "Warrior":
-				allEnemys.add(new Warrior());
-				break;
-			case "Wizard":
-				allEnemys.add(new Wizard());
-				break;
-			case "Monk":
-				allEnemys.add(new Monk());
-				break;
-			}
+			convertOptionCode(allEnemys,option.enemys.get(i));
 		}
 		for (Character player : allPlayers) {
 			player.setCamp("P");
@@ -125,6 +93,30 @@ public class DBM {
 		}
 		sameToSuffix(allPlayers);
 		sameToSuffix(allEnemys);
+	}
+
+	public void convertOptionCode(ArrayList<Character> camps,String code) {
+
+		switch (code) {
+		case "Martial":
+			camps.add(new Martial());
+			break;
+		case "Goblin":
+			camps.add(new Goblin());
+			break;
+		case "Warrior":
+			camps.add(new Warrior());
+			break;
+		case "Wizard":
+			camps.add(new Wizard());
+			break;
+		case "Monk":
+			camps.add(new Monk());
+			break;
+		case "Dammy":
+			camps.add(new Dammy());
+			break;
+		}
 	}
 
 	public void sameToSuffix(ArrayList<Character> camp) {

@@ -22,18 +22,19 @@ public class Option {
 
 	public void menuDisplay() {
 		System.out.println("--------------------------------");
-		System.out.println("[1]party size :" + maxPlayers + "," + maxEnemys);
-		System.out.print("[2]p.party :");
+		System.out.println("[1]return");
+		System.out.println("[2]party size :" + maxPlayers + "," + maxEnemys);
+		System.out.print("[3]p.party :");
 		for (int i = 0; i < players.size(); i++) {
 			System.out.print(players.get(i) + " ");
 		}
 		System.out.println();
-		System.out.print("[3]e.party :");
+		System.out.print("[4]e.party :");
 		for (int i = 0; i < enemys.size(); i++) {
 			System.out.print(enemys.get(i) + " ");
 		}
 		System.out.println();
-		System.out.println("[9]return");
+		
 
 	}
 
@@ -43,18 +44,18 @@ public class Option {
 			int input = new java.util.Scanner(System.in).nextInt();
 			switch (input) {
 			case 1:
+				return;
+			case 2:
 				maxChange();
 				break;
-			case 2:
+			case 3:
 				players.clear();
 				partyChange(players, maxPlayers);
 				break;
-			case 3:
+			case 4:
 				enemys.clear();
 				partyChange(enemys, maxEnemys);
 				break;
-			case 9:
-				return;
 			default:
 				System.out.println("不正な入力です！");
 				break;
@@ -105,7 +106,7 @@ public class Option {
 	}
 
 	public void partyChange(ArrayList<String> camps, int maxCamps) {
-		System.out.println("1.Martial 2.Warrior 3.Wizard 4.Monk 5.Goblin");
+		System.out.println("1.Martial 2.Warrior 3.Wizard 4.Monk 5.Goblin 6.ダミー");
 		for (int i = camps.size(); i < maxCamps; i++) {
 			System.out.print(" " + (i + 1) + "人目　＞");
 			int input = new java.util.Scanner(System.in).nextInt();
@@ -124,6 +125,9 @@ public class Option {
 				break;
 			case 5:
 				camps.add("Goblin");
+				break;
+			case 6:
+				camps.add("Dammy");
 				break;
 			default:
 				System.out.println("不正な入力はゴブリンになります！");

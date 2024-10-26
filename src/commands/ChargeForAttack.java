@@ -17,13 +17,13 @@ public class ChargeForAttack extends Command {
 	}
 
 	public void exeMesse() {
-		System.out.println(owner.getDCN() + "は力を溜めている！");
+		System.out.print(owner.getDCN() + "は力を溜めている！");
 	}
 
 	public void exeEffect() {
 		useSp = owner.getSp();
 		bonus *= useSp;
-		chargeAttack = new ChargeAttack(owner, bonus);
+		chargeAttack = new ChargeAttack(owner, bonus,target);
 		owner.addHasAbnomal(new ChargedForAttack(owner, owner, turn, chargeAttack));
 	}
 }

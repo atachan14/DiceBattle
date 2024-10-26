@@ -19,10 +19,10 @@ public class ChargedForAttack extends Abnomal {
 	}
 
 	public void curedMesse() {
-		System.out.println(owner.getName() + "に力が溜まった！");
+		System.out.println(owner.getDCN() + "に力が溜まった！");
 	}
 
 	public void inTheMiddleMesse() {
-		System.out.println(owner.getName() + "は力を溜めている・・・");
+		System.out.println(owner.getDCN() + "は力を溜めている・・・");
 	}
 }

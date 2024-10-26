@@ -24,6 +24,22 @@ public abstract class Command {
 	}
 
 	public void exe() {
+		if (type == "攻撃" && target.getLife() == false) {
+			owner.overKillMesse();
+			exeEffect();
+			owner.addSp(-useSp);
+			return;
+		}
+
+		if (owner.getSp() < needSp) {
+			owner.shortageSpMesse();
+			return;
+		}
+		
+		if(owner.getLife()==false) {
+			return;
+		}
+
 		exeMesse();
 		exeEffect();
 		owner.addSp(-useSp);
@@ -33,12 +49,20 @@ public abstract class Command {
 		exeMesse();
 		exeEffect(bonus);
 	}
-
+	public void exe(int bonus,Character target) {
+		exeMesse();
+		exeEffect(bonus,target);
+	}
+	
 	public void exeEffect() {
 		System.out.println("中身がない！");
 	}
 
 	public void exeEffect(int bonus) {
+		System.out.println("中身がない！");
+	}
+	
+	public void exeEffect(int bonus,Character target) {
 		System.out.println("中身がない！");
 	}
 
@@ -49,10 +73,10 @@ public abstract class Command {
 			owner.attackMesse(this);
 			break;
 		case "buff":
-			System.out.println(owner.getDCN() + "は" + name + "を使用した！");
+			System.out.print(owner.getDCN() + "は" + name + "を使用した！");
 			break;
 		case "debuff":
-			System.out.println(owner.getDCN() + "は" + target.getDCN() + "を" + name + "した！");
+			System.out.print(owner.getDCN() + "は" + target.getDCN() + "を" + name + "した！");
 			break;
 		case "強化攻撃":
 			System.out.println(owner.getDCN() + "の" + name + "！");
@@ -65,6 +89,10 @@ public abstract class Command {
 
 	public Character getTarget() {
 		return this.target;
+	}
+	
+	public int getNeedSp() {
+		return this.needSp;
 	}
 
 	public void setTarget(Character target) {
