@@ -14,7 +14,7 @@ public class ChargedForAttack extends Abnomal {
 	}
 
 	public void curedEffect() {
-		owner.addSkipTurn(1);
+		owner.addSkipSelect(1);
 		owner.setCommand(chargeAttack);
 	}
 

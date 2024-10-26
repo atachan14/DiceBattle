@@ -112,11 +112,11 @@ public class DBM {
 			}
 		}
 		for (Character player : allPlayers) {
-			player.setCamp("p");
+			player.setCamp("P");
 			allCharacters.add(player);
 		}
 		for (Character enemy : allEnemys) {
-			enemy.setCamp("e");
+			enemy.setCamp("E");
 			allCharacters.add(enemy);
 		}
 	}

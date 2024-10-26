@@ -15,22 +15,22 @@ public class Attack extends Command {
 	public void exeEffect() {
 		owner.addSp(1);
 		dmg=owner.getAd();
-		if (dice.attackDice(owner, owner.target)) {
-			owner.target.addHp(-dmg);
-			System.out.println(owner.target.getName() + "に" + dmg + "のダメージ！");
+		if (dice.attackDice(owner, target)) {
+			target.addHp(-dmg);
+			System.out.println(target.getName() + "に" + dmg + "のダメージ！");
 		} else {
-			owner.target.avoidMesse();
+			target.avoidMesse();
 		}
 	}
 
 	public void exeEffect(int bonus) {
 		owner.addSp(1);
 		dmg=owner.getAd();
-		if (dice.attackDice(owner, owner.target)) {
-			owner.target.addHp(-(dmg+bonus));
-			System.out.println(owner.target.getName() + "に" + dmg + "のダメージと" + bonus + "の追加ダメージ！");
+		if (dice.attackDice(owner, target)) {
+			target.addHp(-(dmg+bonus));
+			System.out.println(target.getName() + "に" + dmg + "のダメージと" + bonus + "の追加ダメージ！");
 		} else {
-			owner.target.avoidMesse();
+			target.avoidMesse();
 		}
 	}
 }

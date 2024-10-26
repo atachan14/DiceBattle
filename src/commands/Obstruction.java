@@ -18,6 +18,6 @@ public class Obstruction extends Command {
 	public void exeEffect() {
 		useSp = owner.getSp();
 		turn *= useSp;
-		owner.addHasAbnomal(new Obstructioned(owner.target, owner, turn, avoidPerDebuff));
+		owner.addHasAbnomal(new Obstructioned(target, owner, turn, avoidPerDebuff));
 	}
 }

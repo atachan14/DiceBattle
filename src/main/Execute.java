@@ -1,6 +1,7 @@
 package main;
 
 import characters.Character;
+import commands.*;
 
 public class Execute {
 	DBM dbm;
@@ -16,19 +17,58 @@ public class Execute {
 
 	public void selectFase() {
 		for (Character chara : dbm.allCharacters) {
-			if (chara.getSkipTurn() > 0) {
-				chara.addSkipTurn(-1);
+			if (chara.getSkipSelect() > 0) {
+				chara.addSkipSelect(-1);
 				dbm.reserveCommands.add(chara.getReserveCommand());
 				continue;
 			}
-			
 			chara.selectCommand();
-			chara.selectTarget(dbm.allCharacters,dbm.allEnemys);
+			setEreaByCode(chara.getReserveCommand());
+			chara.selectTarget();
 			dbm.reserveCommands.add(chara.getReserveCommand());
-			
 		}
 	}
-	
+
+	public void setEreaByCode(Command command) {
+		switch (command.getOwner().getCamp()) {
+		case "P":
+			switch (command.getEreaCode()) {
+			case "fre":
+				command.setErea(dbm.allPlayers);
+				break;
+			case "ene":
+				command.setErea(dbm.allEnemys);
+				break;
+			case "all":
+				command.setErea(dbm.allCharacters);
+				break;
+			default:
+				System.out.println("setEreaByCode＞e＞不明");
+				break;
+			}
+			break;
+		case "E":
+			switch (command.getEreaCode()) {
+			case "fre":
+				command.setErea(dbm.allEnemys);
+				break;
+			case "ene":
+				command.setErea(dbm.allPlayers);
+				break;
+			case "all":
+				command.setErea(dbm.allCharacters);
+				break;
+			default:
+				System.out.println("setEreaByCode＞e＞不明");
+				break;
+			}
+			break;
+		default:
+			System.out.println("setEreaByCode＞camp不明");
+			System.out.println(command.getOwner().getCamp());
+		}
+	}
+
 //	public void autoTargetSet() {
 //		if (dbm.allEnemys.size() == 1) {
 //			for (Character player : dbm.allPlayers) {
@@ -87,19 +127,19 @@ public class Execute {
 			}
 		}
 		for (int i = 0; i < dbm.allPlayers.size(); i++) {
-			if(dbm.allPlayers.get(i).getLife()) {
+			if (dbm.allPlayers.get(i).getLife()) {
 				dbm.lastPlayerSuvive = true;
 				break;
-			}else {
-				dbm.lastPlayerSuvive=false;
+			} else {
+				dbm.lastPlayerSuvive = false;
 			}
 		}
 		for (int i = 0; i < dbm.allEnemys.size(); i++) {
-			if(dbm.allEnemys.get(i).getLife()) {
+			if (dbm.allEnemys.get(i).getLife()) {
 				dbm.lastEnemySuvive = true;
 				break;
-			}else {
-				dbm.lastEnemySuvive=false;
+			} else {
+				dbm.lastEnemySuvive = false;
 			}
 		}
 	}
@@ -118,12 +158,10 @@ public class Execute {
 //		}
 //	}
 
-	
-	
 	public void winnerJudge() {
-		if(dbm.lastPlayerSuvive) {
+		if (dbm.lastPlayerSuvive) {
 			dbm.winner = "Player";
-		}else if(dbm.lastEnemySuvive){
+		} else if (dbm.lastEnemySuvive) {
 			dbm.winner = "Enemy";
 		}
 	}

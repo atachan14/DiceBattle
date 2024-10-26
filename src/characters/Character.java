@@ -1,14 +1,14 @@
 package characters;
 
 import java.util.ArrayList;
-import main.DBM;
-
+import main.Display;
 import abnomals.Abnomal;
 import commands.Command;
 
 public class Character {
-	String name = "character";
-	String camp = "p";
+	String name = "nonCharacter";
+	String camp = "P";
+
 	int hp = 100;
 	int ad = 10;
 	int ap = 10;
@@ -18,7 +18,7 @@ public class Character {
 	int hitPer = 50;
 	int avoidPer = 50;
 
-	public Character target;
+	Character target;
 	boolean Life = true;
 	int skipSelect = 0;
 
@@ -30,39 +30,45 @@ public class Character {
 	}
 
 	public void selectCommand() {
-		if (this.camp == "p") { // playerの処理
-			System.out.println(this.name + "'s select");
-			int input = 0;
-			while (true) {
-				displayCommandSelect();
-				input = new java.util.Scanner(System.in).nextInt();
-				if (input < 1 || input > 4) {
-					System.out.println("不正な入力！");
-				} else {
-					break;
-				}
-			}
+		if (this.camp == "P") { // playerの処理
+			System.out.println(getDCN() + "'s select");
+			displayCommandSelect();
+			int input = Display.inputAndCheckLoop(1, 4);
 			this.reserveCommand = this.hasCommand[input - 1];
 
 		} else { // enemyの処理
 			int input = new java.util.Random().nextInt(4);
 			this.reserveCommand = this.hasCommand[input];
+
 		}
 	}
 
-	public void selectTarget(ArrayList<Character> allCharacters) {
-		for (int i = 0; i < allCharacters.size(); i++) {
-			System.out.print((i + 1) + "." + allCharacters.get(i).getName() + " ");
-			int input;
-			while (true) {
-				input = new java.util.Scanner(System.in).nextInt();
-				if (input < 1 || allEnemys.size() < input) {
-					System.out.println("不正な入力です。");
-				}
-				break;
-			}
-			this.target = allEnemys.get(input - 1);
+	public void displayCommandSelect() {
+		for (int i = 0; i < this.hasCommand.length; i++) {
+			System.out.print((i + 1) + "." + this.hasCommand[i].getName() + " ");
 		}
+		System.out.print("　＞");
+	}
+
+	public void selectTarget() {
+		if (this.camp == "P") { // playerの処理
+			System.out.print("　target : ");
+			displayTargetSelect();
+			int input = Display.inputAndCheckLoop(1, reserveCommand.getErea().size());
+			this.reserveCommand.setTarget(this.reserveCommand.getErea().get(input - 1));
+
+		} else { // enemyの処理
+			int input = new java.util.Random().nextInt(4);
+			this.reserveCommand = this.hasCommand[input];
+
+		}
+	}
+
+	public void displayTargetSelect() {
+		for (int i = 0; i < this.reserveCommand.getErea().size(); i++) {
+			System.out.print((i + 1) + "." + this.reserveCommand.getErea().get(i).getDCN() + " ");
+		}
+		System.out.print(" ＞");
 	}
 
 	public void setCommand(Command command) {
@@ -71,6 +77,10 @@ public class Character {
 
 	public Command getAttack() {
 		return this.hasCommand[0];
+	}
+
+	public String getDCN() {
+		return this.camp + "." + this.name;
 	}
 
 	public String getName() {
@@ -93,11 +103,11 @@ public class Character {
 		return this.Life;
 	}
 
-	public int getSkipTurn() {
+	public int getSkipSelect() {
 		return skipSelect;
 	}
 
-	public void addSkipTurn(int num) {
+	public void addSkipSelect(int num) {
 		this.skipSelect += num;
 	}
 
@@ -156,13 +166,6 @@ public class Character {
 		}
 	}
 
-	public void displayCommandSelect() {
-		for (int i = 0; i < hasCommand.length; i++) {
-			System.out.print((i + 1) + "." + hasCommand[i].getName() + " ");
-		}
-		System.out.print("　＞");
-	}
-
 	public int getHp() {
 		return this.hp;
 	}
@@ -219,8 +222,9 @@ public class Character {
 	}
 
 	public String getSpDisplay() {
-		if (this.camp == "p") {
-			String SpDisplay = "";
+
+		if (this.camp == "P") {
+			String SpDisplay = "SP:";
 			for (int i = 0; i < sp; i++) {
 				SpDisplay += "●";
 			}
