@@ -26,7 +26,7 @@ public class Execute {
 			setEreaByCode(chara.getReserveCommand());
 			chara.selectTarget();
 			dbm.reserveCommands.add(chara.getReserveCommand());
-		}
+			}
 	}
 
 	public void setEreaByCode(Command command) {
@@ -88,8 +88,11 @@ public class Execute {
 				dbm.reserveCommands.get(i).exe();
 				dbm.reserveCommands.remove(i);
 				i--;
+				System.out.print(" ＞");
+				new java.util.Scanner(System.in).nextLine();
+				System.out.println();
 			}
-			System.out.println();
+			
 		}
 	}
 
@@ -99,8 +102,10 @@ public class Execute {
 				dbm.reserveCommands.get(i).exe();
 				dbm.reserveCommands.remove(i);
 				i--;
+				System.out.print("　＞");
+				new java.util.Scanner(System.in).nextLine();
+				System.out.println();
 			}
-			System.out.println();
 		}
 	}
 

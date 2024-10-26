@@ -8,6 +8,8 @@ import commands.Command;
 public class Character {
 	String name = "nonCharacter";
 	String camp = "P";
+	int suffix = 1;
+	boolean same = false;
 
 	int hp = 100;
 	int ad = 10;
@@ -31,7 +33,8 @@ public class Character {
 
 	public void selectCommand() {
 		if (this.camp == "P") { // playerの処理
-			System.out.println(getDCN() + "'s select");
+			System.out.println(getDCN() + "'s");
+			System.out.print("  command: ");
 			displayCommandSelect();
 			int input = Display.inputAndCheckLoop(1, 4);
 			this.reserveCommand = this.hasCommand[input - 1];
@@ -45,21 +48,22 @@ public class Character {
 
 	public void displayCommandSelect() {
 		for (int i = 0; i < this.hasCommand.length; i++) {
-			System.out.print((i + 1) + "." + this.hasCommand[i].getName() + " ");
+			System.out.print("" + (i + 1) + "." + this.hasCommand[i].getName() + " ");
 		}
 		System.out.print("　＞");
 	}
 
 	public void selectTarget() {
 		if (this.camp == "P") { // playerの処理
-			System.out.print("　target : ");
+			System.out.print("   　target: ");
 			displayTargetSelect();
 			int input = Display.inputAndCheckLoop(1, reserveCommand.getErea().size());
 			this.reserveCommand.setTarget(this.reserveCommand.getErea().get(input - 1));
+			System.out.println();
 
 		} else { // enemyの処理
-			int input = new java.util.Random().nextInt(4);
-			this.reserveCommand = this.hasCommand[input];
+			int input = new java.util.Random().nextInt(this.reserveCommand.getErea().size());
+			this.reserveCommand.setTarget(this.reserveCommand.getErea().get(input));
 
 		}
 	}
@@ -80,6 +84,9 @@ public class Character {
 	}
 
 	public String getDCN() {
+		if (this.suffix > 1) {
+			return camp + "." + name + "(" + suffix + ")";
+		}
 		return this.camp + "." + this.name;
 	}
 
@@ -89,6 +96,14 @@ public class Character {
 
 	public String getCamp() {
 		return this.camp;
+	}
+
+	public int getSuffix() {
+		return this.suffix;
+	}
+
+	public void addSuffix(int num) {
+		this.suffix += num;
 	}
 
 	public void setCamp(String camp) {
@@ -120,19 +135,19 @@ public class Character {
 	}
 
 	public void attackMesse(Command command) {
-		System.out.println(this.name + "の" + command.getName() + "！");
+		System.out.println(getDCN() + "の" + command.getName() + "！");
 	}
 
 	public void bonusAttackMesse(Command command) {
-		System.out.println(this.name + "は" + this.target + "を" + command.getName() + "した！");
+		System.out.println(getDCN() + "は" + this.target.getDCN() + "を" + command.getName() + "した！");
 	}
 
 	public void avoidMesse() {
-		System.out.println(this.name + "は回避した！");
+		System.out.println(getDCN() + "は回避した！");
 	}
 
 	public void dyingMesse() {
-		System.out.println(this.name + "は消滅した・・・");
+		System.out.println(getDCN() + "は消滅した・・・");
 	}
 
 	public Character getTarget() {

@@ -11,6 +11,7 @@ public class Obstruction extends Command {
 		super(owner);
 		this.name = "妨害";
 		this.type = "debuff";
+		this.priority = 1;
 
 		needSp = 1;
 	}

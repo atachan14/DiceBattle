@@ -21,6 +21,6 @@ public class Defense extends Command {
 	}
 	
 	public void exeMesse() {
-		System.out.println(owner.getName() + "は身を守っている！");
+		System.out.println(owner.getDCN() + "は身を守っている！");
 	}
 }

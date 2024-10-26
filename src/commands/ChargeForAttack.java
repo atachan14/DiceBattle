@@ -17,7 +17,7 @@ public class ChargeForAttack extends Command {
 	}
 
 	public void exeMesse() {
-		System.out.println(owner.getName() + "は力を溜めている！");
+		System.out.println(owner.getDCN() + "は力を溜めている！");
 	}
 
 	public void exeEffect() {

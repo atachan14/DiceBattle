@@ -49,13 +49,13 @@ public abstract class Command {
 			owner.attackMesse(this);
 			break;
 		case "buff":
-			System.out.println(owner.getName() + "は" + name + "を使用した！");
+			System.out.println(owner.getDCN() + "は" + name + "を使用した！");
 			break;
 		case "debuff":
-			System.out.println(owner.getName() + "は" + target.getName() + "を" + name + "した！");
+			System.out.println(owner.getDCN() + "は" + target.getDCN() + "を" + name + "した！");
 			break;
 		case "強化攻撃":
-			System.out.println(owner.getName() + "の" + name + "！");
+			System.out.println(owner.getDCN() + "の" + name + "！");
 		}
 	}
 

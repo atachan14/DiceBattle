@@ -17,12 +17,12 @@ public class Dice {
 		int ownerDice1 = roll(owner);
 		int ownerDice2 = roll(owner);
 		int ownerLuck = ownerDice1+ownerDice2+owner.getHitPer();
-		System.out.println(owner.getName()+":"+ownerDice1+"+"+ownerDice2+"+"+owner.getHitPer()+"="+ownerLuck);
+		System.out.println(" "+owner.getDCN()+":"+ownerDice1+"+"+ownerDice2+"+"+owner.getHitPer()+"="+ownerLuck);
 
 		int targetDice1 = roll(target);
 		int targetDice2 = roll(target);
 		int targetLuck = targetDice1+targetDice2+target.getAvoidPer();
-		System.out.println(target.getName()+":"+targetDice1+"+"+targetDice2+"+"+target.getAvoidPer()+"="+targetLuck);
+		System.out.println(" "+target.getDCN()+":"+targetDice1+"+"+targetDice2+"+"+target.getAvoidPer()+"="+targetLuck);
 		
 		if (ownerLuck > targetLuck) {
 			return true;

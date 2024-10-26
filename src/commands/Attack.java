@@ -17,7 +17,7 @@ public class Attack extends Command {
 		dmg=owner.getAd();
 		if (dice.attackDice(owner, target)) {
 			target.addHp(-dmg);
-			System.out.println(target.getName() + "に" + dmg + "のダメージ！");
+			System.out.println(target.getDCN() + "に" + dmg + "のダメージ！");
 		} else {
 			target.avoidMesse();
 		}
@@ -28,7 +28,7 @@ public class Attack extends Command {
 		dmg=owner.getAd();
 		if (dice.attackDice(owner, target)) {
 			target.addHp(-(dmg+bonus));
-			System.out.println(target.getName() + "に" + dmg + "のダメージと" + bonus + "の追加ダメージ！");
+			System.out.println(target.getDCN() + "に" + dmg + "のダメージと" + bonus + "の追加ダメージ！");
 		} else {
 			target.avoidMesse();
 		}

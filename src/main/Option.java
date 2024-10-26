@@ -16,7 +16,7 @@ public class Option {
 		players.add("Wizard");
 
 		enemys.add("Goblin");
-		enemys.add("Monk");
+		enemys.add("Goblin");
 		enemys.add("Goblin");
 	}
 

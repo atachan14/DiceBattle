@@ -11,12 +11,13 @@ public class Precision extends Command {
 		super(owner);
 		this.name = "精密";
 		this.type = "debuff";
+		this. priority = 3;
 
 		needSp = 1;
 	}
 	
 	public void exeMesse() {
-		System.out.println(owner.getName() + "は集中力を高めた！");
+		System.out.println(owner.getDCN() + "は集中力を高めた！");
 	}
 
 	public void exeEffect() {

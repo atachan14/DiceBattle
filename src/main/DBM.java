@@ -36,7 +36,7 @@ public class DBM {
 
 		while (lastPlayerSuvive && lastEnemySuvive) {
 			turnCount++;
-			
+
 			display.startTurn();
 			execute.stanbyFase();
 			execute.selectFase();
@@ -51,7 +51,11 @@ public class DBM {
 		execute.winnerJudge();
 		display.result();
 	}
-	
+
+	public ArrayList<Character> getAllPlayers() {
+		return allCharacters;
+	}
+
 	public void startDisplay() {
 		while (true) {
 			System.out.println("1.start 8.option 9.end");
@@ -119,5 +123,21 @@ public class DBM {
 			enemy.setCamp("E");
 			allCharacters.add(enemy);
 		}
+		sameToSuffix(allPlayers);
+		sameToSuffix(allEnemys);
 	}
+
+	public void sameToSuffix(ArrayList<Character> camp) {
+		for (int i = camp.size() - 1; i >= 0; i--) {
+			int add = 0;
+			for (int j = i - 1; j >= 0; j--) {
+				if (camp.get(i).getName().equals(camp.get(j).getName())
+						&& camp.get(i).getSuffix() == camp.get(j).getSuffix()) {
+					add++;
+				}
+			}
+			camp.get(i).addSuffix(add);
+		}
+	}
+
 }
