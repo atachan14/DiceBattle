@@ -24,23 +24,23 @@ public class Display {
 		}
 		System.out.println();
 		for (Character chara : dbm.allCharacters) {
-			System.out.printf("%-15s", "HP:" + chara.getHp());
+			System.out.printf("%-17s", "HP:" + chara.getHp());
 		}
 		System.out.println();
 		for (Character chara : dbm.allCharacters) {
-			System.out.printf("%-12s", chara.getSpDisplay());
+			System.out.printf("%-13s", chara.getSpDisplay());
 		}
 		System.out.println();
 		for (Character chara : dbm.allCharacters) {
-			System.out.printf("%-13s", "攻撃力:" + chara.getAd());
+			System.out.printf("%-14s", "攻撃力:" + chara.getAd());
 		}
 		System.out.println();
 		for (Character chara : dbm.allCharacters) {
-			System.out.printf("%-13s", "命中率:" + chara.getHitPer());
+			System.out.printf("%-14s", "命中率:" + chara.getHitPer());
 		}
 		System.out.println();
 		for (Character chara : dbm.allCharacters) {
-			System.out.printf("%-13s", "回避率:" + chara.getAvoidPer());
+			System.out.printf("%-14s", "回避率:" + chara.getAvoidPer());
 		}
 		System.out.println();
 		System.out.println("-----------------------------");
